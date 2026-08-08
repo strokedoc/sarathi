@@ -216,6 +216,47 @@ function WordByWord({ v }) {
   );
 }
 
+const X_CHAPTERS = [1, 2, 12];
+const xCache = new Map();
+function fetchChapterX(ch) {
+  if (!xCache.has(ch)) {
+    xCache.set(ch, fetch(`${import.meta.env.BASE_URL}x/ch${ch}.json`).then((r) => {
+      if (!r.ok) throw new Error("x fetch failed");
+      return r.json();
+    }));
+  }
+  return xCache.get(ch);
+}
+function Explanation({ v }) {
+  const [open, setOpen] = useState(false);
+  const [state, setState] = useState({ status: "idle" });
+  if (!X_CHAPTERS.includes(v.ch)) return null;
+  const toggle = () => {
+    const next = !open;
+    setOpen(next);
+    if (next && state.status === "idle") {
+      setState({ status: "loading" });
+      fetchChapterX(v.ch)
+        .then((data) => {
+          const text = data[v.ref];
+          if (!text) throw new Error("no explanation");
+          setState({ status: "ready", text });
+        })
+        .catch(() => setState({ status: "error" }));
+    }
+  };
+  return (
+    <div className="cmp">
+      <button className="cmp-btn" onClick={toggle}>{open ? "Hide explanation" : "Explanation"}</button>
+      {open && <div className="cmp-body">
+        {state.status === "loading" && <div className="cmp-row">Loading…</div>}
+        {state.status === "error" && <div className="disc">Couldn't load the explanation (offline?).</div>}
+        {state.status === "ready" && <div className="cmp-row" style={{ fontSize: 14, lineHeight: 1.6, color: "var(--muted)" }}>{state.text}</div>}
+      </div>}
+    </div>
+  );
+}
+
 function VerseCard({ v, fav, onFav, onMark, marked }) {
   const meta = FEAT[v.ref];
   return (
@@ -227,6 +268,7 @@ function VerseCard({ v, fav, onFav, onMark, marked }) {
       <div className="en2">{v.en}</div>
       <Readings v={v} />
       <WordByWord v={v} />
+      <Explanation v={v} />
       {meta && <div className="note">{meta.note}</div>}
       {meta && <div className="tagrow">{meta.themes.map((t) => <span className="ttag" key={t}>{t}</span>)}</div>}
       <GujaratiLine v={v} />
@@ -369,6 +411,7 @@ function Today({ v, fav, onFav, onShuffle, isToday, pool, setPool, entry, onSave
         <div className="en">{v.en}</div>
         <Readings v={v} />
         <WordByWord v={v} />
+        <Explanation v={v} />
         {meta && <div className="note">{meta.note}</div>}
         {meta && <div className="tagrow">{meta.themes.map((t) => <span className="ttag" key={t}>{t}</span>)}</div>}
         <GujaratiLine v={v} />
