@@ -1,16 +1,15 @@
-# React + Vite
+# Sārathi — The Steady Mind
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Sārathi is a Bhagavad Gītā daily companion: all 701 verses with Sanskrit, English, and Gujarati text for reflection and guidance. It installs as an offline-capable PWA, so once loaded it works without a connection.
 
-Currently, two official plugins are available:
+Verse text is drawn from public-domain Bhagavad Gītā sources, with original Gujarati translation and curation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Development
 
-## React Compiler
+```
+npm install
+npm run dev
+npm run build
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Pushes to `main` auto-deploy to GitHub Pages via GitHub Actions.
