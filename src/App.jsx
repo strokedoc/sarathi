@@ -228,34 +228,27 @@ function fetchChapterX(ch) {
   return xCache.get(ch);
 }
 function Explanation({ v }) {
-  const [open, setOpen] = useState(false);
   const [state, setState] = useState({ status: "idle" });
+  useEffect(() => {
+    if (!X_CHAPTERS.includes(v.ch)) return;
+    setState({ status: "loading" });
+    fetchChapterX(v.ch)
+      .then((data) => {
+        const e = data[v.ref];
+        const en = typeof e === "string" ? e : e?.en;
+        const gu = typeof e === "string" ? null : e?.gu;
+        if (!en) throw new Error("no explanation");
+        setState({ status: "ready", en, gu });
+      })
+      .catch(() => setState({ status: "error" }));
+  }, [v.ref, v.ch]);
   if (!X_CHAPTERS.includes(v.ch)) return null;
-  const toggle = () => {
-    const next = !open;
-    setOpen(next);
-    if (next && state.status === "idle") {
-      setState({ status: "loading" });
-      fetchChapterX(v.ch)
-        .then((data) => {
-          const e = data[v.ref];
-          const en = typeof e === "string" ? e : e?.en;
-          const gu = typeof e === "string" ? null : e?.gu;
-          if (!en) throw new Error("no explanation");
-          setState({ status: "ready", en, gu });
-        })
-        .catch(() => setState({ status: "error" }));
-    }
-  };
+  if (state.status !== "ready") return null;
   return (
     <div className="cmp">
-      <button className="cmp-btn" onClick={toggle}>{open ? "Hide explanation" : "Explanation"}</button>
-      {open && <div className="cmp-body">
-        {state.status === "loading" && <div className="cmp-row">Loading…</div>}
-        {state.status === "error" && <div className="disc">Couldn't load the explanation (offline?).</div>}
-        {state.status === "ready" && <div className="cmp-row" style={{ fontSize: 14, lineHeight: 1.6, color: "var(--muted)" }}>{state.en}</div>}
-        {state.status === "ready" && state.gu && <div className="guj" style={{ fontSize: 14.5, marginTop: 8 }}>{state.gu}</div>}
-      </div>}
+      <span className="cmp-lbl">Explanation</span>
+      <div className="cmp-row" style={{ fontSize: 14, lineHeight: 1.6, color: "var(--muted)" }}>{state.en}</div>
+      {state.gu && <div className="guj" style={{ fontSize: 14.5, marginTop: 8 }}>{state.gu}</div>}
     </div>
   );
 }
@@ -269,13 +262,15 @@ function VerseCard({ v, fav, onFav, onMark, marked }) {
       {v.sa && <div className="dev" style={{ fontSize: 16, lineHeight: 1.95 }}>{v.sa}</div>}
       {v.tr && <div className="translit">{v.tr}</div>}
       <div className="en2">{v.en}</div>
-      <Readings v={v} />
-      <WordByWord v={v} />
-      <Explanation v={v} />
+      <GujaratiLine v={v} />
       {meta && <div className="note">{meta.note}</div>}
       {meta && <div className="tagrow">{meta.themes.map((t) => <span className="ttag" key={t}>{t}</span>)}</div>}
-      <GujaratiLine v={v} />
-      {onMark && <div className="cmp"><button className="cmp-btn" onClick={() => onMark(v)}>{marked ? "✓ Marked — your place" : "Mark my place"}</button></div>}
+      <Explanation v={v} />
+      <div className="row" style={{ gap: 14, marginTop: 10 }}>
+        <Readings v={v} />
+        <WordByWord v={v} />
+        {onMark && <div className="cmp"><button className="cmp-btn" onClick={() => onMark(v)}>{marked ? "✓ Marked — your place" : "Mark my place"}</button></div>}
+      </div>
     </div>
   );
 }
@@ -412,12 +407,14 @@ function Today({ v, fav, onFav, onShuffle, isToday, pool, setPool, entry, onSave
         {v.sa && <div className="dev">{v.sa}</div>}
         {v.tr && <div className="translit">{v.tr}</div>}
         <div className="en">{v.en}</div>
-        <Readings v={v} />
-        <WordByWord v={v} />
-        <Explanation v={v} />
+        <GujaratiLine v={v} />
         {meta && <div className="note">{meta.note}</div>}
         {meta && <div className="tagrow">{meta.themes.map((t) => <span className="ttag" key={t}>{t}</span>)}</div>}
-        <GujaratiLine v={v} />
+        <Explanation v={v} />
+        <div className="row" style={{ gap: 14, marginTop: 10 }}>
+          <Readings v={v} />
+          <WordByWord v={v} />
+        </div>
         <div className="row" style={{ marginTop: 18, position: "relative" }}>
           <button className="btn ghost icon" onClick={() => onFav(v.ref)} aria-label="Save"><Star on={fav} /></button>
           <button className="btn" onClick={onShuffle}><ShuffleIcon /> Draw another verse</button>
