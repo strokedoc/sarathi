@@ -216,7 +216,7 @@ function WordByWord({ v }) {
   );
 }
 
-const X_CHAPTERS = [1, 2, 12];
+const X_CHAPTERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 const xCache = new Map();
 function fetchChapterX(ch) {
   if (!xCache.has(ch)) {
@@ -238,9 +238,11 @@ function Explanation({ v }) {
       setState({ status: "loading" });
       fetchChapterX(v.ch)
         .then((data) => {
-          const text = data[v.ref];
-          if (!text) throw new Error("no explanation");
-          setState({ status: "ready", text });
+          const e = data[v.ref];
+          const en = typeof e === "string" ? e : e?.en;
+          const gu = typeof e === "string" ? null : e?.gu;
+          if (!en) throw new Error("no explanation");
+          setState({ status: "ready", en, gu });
         })
         .catch(() => setState({ status: "error" }));
     }
@@ -251,7 +253,8 @@ function Explanation({ v }) {
       {open && <div className="cmp-body">
         {state.status === "loading" && <div className="cmp-row">Loading…</div>}
         {state.status === "error" && <div className="disc">Couldn't load the explanation (offline?).</div>}
-        {state.status === "ready" && <div className="cmp-row" style={{ fontSize: 14, lineHeight: 1.6, color: "var(--muted)" }}>{state.text}</div>}
+        {state.status === "ready" && <div className="cmp-row" style={{ fontSize: 14, lineHeight: 1.6, color: "var(--muted)" }}>{state.en}</div>}
+        {state.status === "ready" && state.gu && <div className="guj" style={{ fontSize: 14.5, marginTop: 8 }}>{state.gu}</div>}
       </div>}
     </div>
   );
