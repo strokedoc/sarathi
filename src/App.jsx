@@ -376,7 +376,7 @@ export default function App() {
         entry={journal[todayKey]?.text || ""} onSave={saveJournal} ready={ready}
         bookmark={bookmark} goToBookmark={goToBookmark} />}
       {tab === "guidance" && <Guidance favorites={favorites} onFav={toggleFav} />}
-      {tab === "explore" && <Explore favorites={favorites} onFav={toggleFav} onMark={setMark} bookmarkRef={bookmark?.ref} jumpRef={jumpRef} onJumped={() => setJumpRef(null)} />}
+      {tab === "explore" && <Explore favorites={favorites} onFav={toggleFav} onMark={setMark} bookmarkRef={bookmark?.ref} bookmarkCh={bookmark?.ch} onContinue={goToBookmark} jumpRef={jumpRef} onJumped={() => setJumpRef(null)} />}
       {tab === "saved" && <Saved favorites={favorites} journal={journal} onFav={toggleFav} onExport={exportBackup} onImport={importBackup} />}
     </div>
 
@@ -488,7 +488,7 @@ function Guidance({ favorites, onFav }) {
   );
 }
 
-function Explore({ favorites, onFav, onMark, bookmarkRef, jumpRef, onJumped }) {
+function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue, jumpRef, onJumped }) {
   const [mode, setMode] = useState("themes");
   const [scope, setScope] = useState("curated");
   const [theme, setTheme] = useState(null);
@@ -524,6 +524,8 @@ function Explore({ favorites, onFav, onMark, bookmarkRef, jumpRef, onJumped }) {
     <div className="stack">
       <div><div className="sect-h">Explore the Gītā</div>
         <div className="sect-s">All 701 verses, with verified Sanskrit and translation. Browse the curated themes, or read straight through any chapter.</div></div>
+      {bookmarkRef && <button className="btn" style={{ alignSelf: "flex-start" }} onClick={onContinue}>
+        Continue reading — Gītā {bookmarkRef} · {CHAPTERS[bookmarkCh - 1]} →</button>}
       <div className="seg">
         <button className={mode === "themes" ? "on" : ""} onClick={() => setMode("themes")}>Themes</button>
         <button className={mode === "all" ? "on" : ""} onClick={() => setMode("all")}>All verses</button>
