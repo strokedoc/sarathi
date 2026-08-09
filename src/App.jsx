@@ -102,7 +102,7 @@ const CSS = `
 textarea{width:100%;background:rgba(8,12,32,.5);border:1px solid var(--line);border-radius:14px;color:var(--text);font-family:var(--ui);font-size:15px;line-height:1.5;padding:13px 14px;resize:vertical;min-height:84px;outline:none}
 textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:var(--gold2)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
-.chip{font-size:13px;color:var(--muted);background:rgba(125,144,236,.10);border:1px solid var(--line);border-radius:999px;padding:8px 13px;cursor:pointer;transition:.16s}
+.chip{font-size:13.5px;color:var(--muted);background:rgba(125,144,236,.10);border:1px solid var(--line);border-radius:999px;padding:10px 15px;cursor:pointer;transition:.16s}
 .chip:hover{color:var(--text);border-color:var(--line2)}
 .chip.on{background:rgba(231,180,102,.16);color:var(--gold2);border-color:rgba(231,180,102,.35)}
 .cnum{font-size:13px;color:var(--muted);background:rgba(125,144,236,.10);border:1px solid var(--line);border-radius:10px;min-width:38px;text-align:center;padding:8px 6px;cursor:pointer;transition:.16s}
@@ -436,32 +436,33 @@ function Today({ v, fav, onFav, onShuffle, isToday, pool, setPool, entry, onSave
 }
 
 function Guidance({ favorites, onFav }) {
-  const [input, setInput] = useState("");
   const [out, setOut] = useState(""); const [loading, setLoading] = useState(false);
   const [related, setRelated] = useState([]);
   const chips = [
-    ["A hard decision","I'm facing a hard decision and feel torn about which way to go."],
-    ["Grief or loss","I'm grieving a loss and finding it hard to carry."],
-    ["Anxiety","I feel anxious and my mind won't settle."],
-    ["Anger","I'm holding a lot of anger and resentment right now."],
-    ["Feeling stuck","I feel stuck and unsure of my purpose or direction."],
-    ["Overwhelm at work","I'm overwhelmed and burning out from work."],
-    ["Self-doubt","I keep doubting myself after a failure."],
+    ["A hard decision","I'm facing a hard decision and feel torn about which way to go.","Action & Duty"],
+    ["Grief or loss","I'm grieving a loss and finding it hard to carry.","Grief & Loss"],
+    ["Anxiety","I feel anxious and my mind won't settle.","Equanimity"],
+    ["Anger","I'm holding a lot of anger and resentment right now.","Desire & Anger"],
+    ["Feeling stuck","I feel stuck and unsure of my purpose or direction.","Action & Duty"],
+    ["Overwhelm at work","I'm overwhelmed and burning out from work.","Peace"],
+    ["Self-doubt","I keep doubting myself after a failure.","Self-Mastery"],
+    ["Loneliness","I feel lonely, isolated and disconnected from everyone.","Devotion & Trust"],
+    ["Restless mind","My mind is restless, I can't focus and I keep overthinking everything.","The Restless Mind"],
+    ["Craving & temptation","I'm struggling with craving and temptation I can't seem to control.","Desire & Anger"],
+    ["Seeking peace","I just want to feel calm, still and at peace.","Peace"],
+    ["Illness & mortality","Someone I love is seriously ill and I'm grieving; I'm afraid of death and I mourn what we may lose.","The Eternal Self"],
+    ["Envy & comparison","I keep comparing myself to others and I'm full of resentment about it.","Compassion"],
+    ["Letting go","I desperately want a certain outcome and I can't let go of wanting it.","Letting Go of Outcomes"],
   ];
-  const ask = (situation) => {
-    const text = situation ?? input; if (!text.trim()) return;
+  const ask = (situation, theme) => {
+    const text = situation;
     setLoading(true); setOut("");
     const MSGS = {"Action & Duty":"The Gītā meets you in the space between knowing what is right and finding the strength to act. Your duty, however it appears, is already the path.","Letting Go of Outcomes":"The Gītā invites you to pour yourself fully into what you're doing — and then release your grip on what comes next. That release is itself a kind of freedom.","Equanimity":"The Gītā points to a steadiness that doesn't come from life going smoothly, but from something inside you that isn't moved by each wave. That ground is already here.","The Eternal Self":"Beneath whatever is shifting or hurting right now, the Gītā points to something in you that is unchanged — witnessing, quiet, whole.","Grief & Loss":"The Gītā does not ask you to stop feeling. It asks you to grieve fully — and then to recognize that what you most loved was never only in what was lost.","Courage":"The Gītā meets this moment of hesitation with one quiet call: rise. Not because the path is clear, but because you are capable of walking it.","Desire & Anger":"The Gītā traces a familiar arc — from wanting, through frustration, into something darker. Seeing the chain is already the first step to loosening it.","The Restless Mind":"The Gītā is patient with the restless mind. The answer it offers: practice, and again practice — each return is the practice itself, not a failure of it.","Devotion & Trust":"The Gītā asks whether you might lay down the weight you've been carrying alone — not into nothing, but into something that holds you in return.","Self-Mastery":"The Gītā places the key in your own hands. The one who can lift you higher is already present — in the choices you make, the habits you tend each day.","Peace":"The Gītā points toward a peace that doesn't depend on everything going right. It waits in the quiet beneath the noise, available now.","Compassion":"The Gītā sees you in all things and all things in you. From that recognition, something like compassion arises as the most natural response."};
     setTimeout(() => {
       const matches = matchVerses(text, 7);
       setRelated(matches);
-      const topThemes = [...new Set(matches.flatMap(v => {
-        const f = FEAT[v.ref]; if (f) return f.themes;
-        const vi = VTHEM[v.ref]; return vi ? vi.map(i => TH_NAMES[i]) : [];
-      }))].slice(0, 2);
-      const intro = topThemes.length ? (MSGS[topThemes[0]] || "The Gītā holds a teaching for what you're facing.") : "The Gītā holds a teaching for what you're facing.";
-      const note = topThemes.length > 1 ? ` The verses below draw especially from the teachings on ${topThemes.join(" and ")}.` : topThemes.length ? ` The verses below draw from the teachings on ${topThemes[0]}.` : "";
-      setOut(intro + note + " Sit with the ones that meet you where you are.");
+      const intro = MSGS[theme] || "The Gītā holds a teaching for what you're facing.";
+      setOut(intro + ` The verses below draw from the teachings on ${theme}. Sit with the ones that meet you where you are.`);
       setLoading(false);
     }, 120);
   };
@@ -473,11 +474,9 @@ function Guidance({ favorites, onFav }) {
   return (
     <div className="stack">
       <div><div className="sect-h">What are you facing?</div>
-        <div className="sect-s">Describe your situation in your own words. Sārathi reflects on it through the Gītā and surfaces the verses that speak to it — offline, always available.</div></div>
+        <div className="sect-s">Choose what you're facing. Sārathi reflects on it through the Gītā and surfaces the verses that speak to it — offline, always available.</div></div>
       <div className="card fade">
-        <textarea value={input} onChange={(e) => setInput(e.target.value)} placeholder="e.g. I have to choose between two paths and I'm afraid of getting it wrong…" />
-        <div className="chips">{chips.map(([l, full]) => <button key={l} className="chip" onClick={() => { setInput(full); ask(full); }}>{l}</button>)}</div>
-        <div className="row" style={{ marginTop: 10 }}><button className="btn gold" onClick={() => ask()} disabled={loading || !input.trim()}><CompassIcon /> Seek guidance</button></div>
+        <div className="chips">{chips.map(([l, full, theme]) => <button key={l} className="chip" onClick={() => ask(full, theme)}>{l}</button>)}</div>
         {loading && <div className="thinking"><div className="spin" /> Sitting with your words…</div>}
         {rendered && !loading && <div className="guide-out fade">{rendered}</div>}
         {!loading && out && <div className="disc">A reflection drawn from the Gītā — not a substitute for the people who care about you, or for professional support when you need it.</div>}
