@@ -488,7 +488,7 @@ function Guidance({ favorites, onFav }) {
 }
 
 function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue, jumpRef, onJumped }) {
-  const [mode, setMode] = useState("themes");
+  const [mode, setMode] = useState("all");
   const [scope, setScope] = useState("curated");
   const [theme, setTheme] = useState(null);
   const [chapter, setChapter] = useState(1);
@@ -526,8 +526,8 @@ function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue
       {bookmarkRef && <button className="btn" style={{ alignSelf: "flex-start" }} onClick={onContinue}>
         Continue reading — Gītā {bookmarkRef} · {CHAPTERS[bookmarkCh - 1]} →</button>}
       <div className="seg">
-        <button className={mode === "themes" ? "on" : ""} onClick={() => setMode("themes")}>Themes</button>
         <button className={mode === "all" ? "on" : ""} onClick={() => setMode("all")}>All verses</button>
+        <button className={mode === "themes" ? "on" : ""} onClick={() => setMode("themes")}>Themes</button>
       </div>
 
       {mode === "themes" && (<>
