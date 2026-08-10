@@ -67,9 +67,11 @@ const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=Noto+Serif+Devanagari:wght@400;500&family=Noto+Serif+Gujarati:wght@400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{--night:#0c1230;--night2:#0f1638;--surface:#161e48;--surface2:#1d2758;--line:rgba(176,188,255,.12);--line2:rgba(176,188,255,.20);--krishna:#7d90ec;--krishna2:#5566cf;--gold:#e7b466;--gold2:#f2cd8c;--text:#eef0fb;--verse:#f6efdf;--muted:#9aa3cb;--muted2:#6d76a3;--display:'Cormorant Garamond',Georgia,serif;--deva:'Noto Serif Devanagari',serif;--ui:'Inter',system-ui,-apple-system,sans-serif}
-.app{min-height:100vh;background:radial-gradient(120% 60% at 50% -10%,rgba(231,180,102,.10),transparent 55%),radial-gradient(90% 50% at 50% 0%,rgba(125,144,236,.10),transparent 50%),linear-gradient(180deg,var(--night),var(--night2));color:var(--text);font-family:var(--ui);padding-bottom:84px}
+html,body{background:var(--night);min-height:100%}
+.app{min-height:100vh;padding-top:env(safe-area-inset-top);background:radial-gradient(120% 60% at 50% -10%,rgba(231,180,102,.10),transparent 55%),radial-gradient(90% 50% at 50% 0%,rgba(125,144,236,.10),transparent 50%),linear-gradient(180deg,var(--night),var(--night2));color:var(--text);font-family:var(--ui);padding-bottom:84px}
 .wrap{max-width:680px;margin:0 auto;padding:0 18px}
-.head{padding:24px 0 12px;text-align:center}
+.head{padding:24px 0 12px;text-align:center;position:relative}
+.head-share{position:absolute;top:24px;right:0}
 .mark{display:inline-flex;align-items:center;gap:9px;color:var(--gold2)}
 .brand{font-family:var(--display);font-size:33px;font-weight:600;letter-spacing:.02em;line-height:1;margin-top:6px}
 .tag{color:var(--muted);font-size:12px;margin-top:5px;letter-spacing:.05em;text-transform:uppercase}
@@ -149,6 +151,54 @@ const Star = ({ on }) => (<svg className={"star"+(on?" on":"")} width="20" heigh
 function CompassIcon(){return(<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z" fill="currentColor" stroke="none" opacity=".85"/></svg>);}
 function GridIcon(){return(<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>);}
 function ShuffleIcon(){return(<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M3 7h4l3 5 3 5h5M3 17h4l3-5M14 7h5M17 4l3 3-3 3M17 14l3 3-3 3"/></svg>);}
+function ShareIcon(){return(<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.6M8.2 13.2l7.6 4.6"/></svg>);}
+
+const SARATHI_URL = "https://strokedoc.github.io/sarathi/";
+
+async function shareOrCopy(payload, text) {
+  if (navigator.share) {
+    try { await navigator.share(payload); return null; } catch (e) { if (e && e.name === "AbortError") return null; }
+  }
+  try { await navigator.clipboard.writeText(text); return "copied"; } catch (e) { return null; }
+}
+const shareVerse = (v) => {
+  const text = `"${v.en}"\n\n— Bhagavad Gītā ${v.ref}\n\nSārathi — ${SARATHI_URL}`;
+  return shareOrCopy({ text }, text);
+};
+const shareApp = () => {
+  const text = "Sārathi — a daily Bhagavad Gītā companion. Verse, reflection, and guidance, offline.";
+  return shareOrCopy({ title: "Sārathi", text, url: SARATHI_URL }, `${text}\n${SARATHI_URL}`);
+};
+
+function ShareButton({ v, ghost }) {
+  const [flag, setFlag] = useState("");
+  const onClick = async () => {
+    const result = await shareVerse(v);
+    if (result === "copied") { setFlag("Copied"); setTimeout(() => setFlag(""), 1600); }
+  };
+  return (
+    <span style={{ position: "relative", display: "inline-flex", alignItems: "center" }}>
+      <button className={ghost ? "btn ghost icon" : "cmp-btn"} onClick={onClick} aria-label="Share verse">
+        {ghost ? <ShareIcon /> : <><ShareIcon /> Share</>}
+      </button>
+      {flag && <span className="saved-pill" style={{ marginLeft: 8 }}>{flag}</span>}
+    </span>
+  );
+}
+
+function ShareAppButton() {
+  const [flag, setFlag] = useState("");
+  const onClick = async () => {
+    const result = await shareApp();
+    if (result === "copied") { setFlag("Copied"); setTimeout(() => setFlag(""), 1600); }
+  };
+  return (
+    <span className="head-share" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+      {flag && <span className="saved-pill">{flag}</span>}
+      <button className="btn ghost icon" onClick={onClick} aria-label="Share Sārathi"><ShareIcon /></button>
+    </span>
+  );
+}
 
 function GujaratiLine({ v }) {
   const baked = (FEAT[v.ref] && FEAT[v.ref].gu) || v.gu || null;
@@ -269,6 +319,7 @@ function VerseCard({ v, fav, onFav, onMark, marked }) {
       <div className="row" style={{ gap: 14, marginTop: 10 }}>
         <Readings v={v} />
         <WordByWord v={v} />
+        <ShareButton v={v} />
         {onMark && <div className="cmp"><button className="cmp-btn" onClick={() => onMark(v)}>{marked ? "✓ Marked — your place" : "Mark my place"}</button></div>}
       </div>
     </div>
@@ -365,6 +416,7 @@ export default function App() {
   return (
     <div className="app"><style>{CSS}</style><div className="wrap">
       <div className="head">
+        <ShareAppButton />
         <div className="mark"><Wheel s={19} /><span style={{ fontSize: 12, letterSpacing: ".14em" }}>SĀRATHI</span></div>
         <div className="brand">The Steady Mind</div>
         <div className="tag">a daily compass · Bhagavad Gītā</div>
@@ -417,6 +469,7 @@ function Today({ v, fav, onFav, onShuffle, isToday, pool, setPool, entry, onSave
         </div>
         <div className="row" style={{ marginTop: 18, position: "relative" }}>
           <button className="btn ghost icon" onClick={() => onFav(v.ref)} aria-label="Save"><Star on={fav} /></button>
+          <ShareButton v={v} ghost />
           <button className="btn" onClick={onShuffle}><ShuffleIcon /> Draw another verse</button>
         </div>
       </div>
