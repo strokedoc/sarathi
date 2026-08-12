@@ -66,18 +66,28 @@ function matchVerses(text, max = 5) {
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=Noto+Serif+Devanagari:wght@400;500&family=Noto+Serif+Gujarati:wght@400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--night:#0c1230;--night2:#0f1638;--surface:#161e48;--surface2:#1d2758;--line:rgba(176,188,255,.12);--line2:rgba(176,188,255,.20);--krishna:#7d90ec;--krishna2:#5566cf;--gold:#e7b466;--gold2:#f2cd8c;--text:#eef0fb;--verse:#f6efdf;--muted:#9aa3cb;--muted2:#6d76a3;--display:'Cormorant Garamond',Georgia,serif;--deva:'Noto Serif Devanagari',serif;--ui:'Inter',system-ui,-apple-system,sans-serif}
+:root{--night:#070a1c;--night2:#0a0e24;--surface:rgba(176,188,255,.06);--surface2:rgba(176,188,255,.09);--line:rgba(176,188,255,.10);--line2:rgba(176,188,255,.20);--krishna:#7d90ec;--krishna2:#5566cf;--gold:#e7b466;--gold2:#f2cd8c;--text:#eef0fb;--verse:#f6efdf;--muted:#9aa3cb;--muted2:#6d76a3;--display:'Cormorant Garamond',Georgia,serif;--deva:'Noto Serif Devanagari',serif;--ui:'Inter',system-ui,-apple-system,sans-serif;
+--bg:radial-gradient(90% 42% at 50% 0%,rgba(231,180,102,.16),rgba(125,144,236,.05) 55%,transparent 75%),linear-gradient(180deg,#0a0e24,#070a1c 60%);
+--headh:calc(58px + env(safe-area-inset-top));--navh:calc(104px + env(safe-area-inset-bottom))}
 html,body{background:var(--night);min-height:100%}
-.app{min-height:100vh;padding-top:env(safe-area-inset-top);background:radial-gradient(120% 60% at 50% -10%,rgba(231,180,102,.10),transparent 55%),radial-gradient(90% 50% at 50% 0%,rgba(125,144,236,.10),transparent 50%),linear-gradient(180deg,var(--night),var(--night2));color:var(--text);font-family:var(--ui);padding-bottom:84px}
-.wrap{max-width:680px;margin:0 auto;padding:0 18px}
-.head{padding:24px 0 12px;text-align:center;position:relative}
-.head-share{position:absolute;top:24px;right:0}
-.mark{display:inline-flex;align-items:center;gap:9px;color:var(--gold2)}
-.brand{font-family:var(--display);font-size:33px;font-weight:600;letter-spacing:.02em;line-height:1;margin-top:6px}
-.tag{color:var(--muted);font-size:12px;margin-top:5px;letter-spacing:.05em;text-transform:uppercase}
-.card{background:linear-gradient(180deg,var(--surface),var(--surface2) 120%);border:1px solid var(--line);border-radius:20px;padding:22px 20px;position:relative;overflow:hidden}
+/* One viewport-anchored gradient, sampled identically by the page and by both
+   scroll-edge scrims, so content dissolves into them with no visible seam. */
+.bg-fixed{background:var(--bg);background-size:100vw 100vh;background-repeat:no-repeat;background-position:top left}
+.app{position:relative;min-height:100vh;background:var(--night);color:var(--text);font-family:var(--ui);padding-bottom:calc(120px + env(safe-area-inset-bottom))}
+.app::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--bg);background-size:100vw 100vh;background-repeat:no-repeat;background-position:top left}
+.wrap{max-width:680px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+.topscrim{position:fixed;top:0;left:0;right:0;height:var(--headh);z-index:14;pointer-events:none;
+  -webkit-mask-image:linear-gradient(180deg,#000 66%,transparent);mask-image:linear-gradient(180deg,#000 66%,transparent)}
+.botscrim{position:fixed;bottom:0;left:0;right:0;height:var(--navh);z-index:19;pointer-events:none;background-position:bottom left;
+  -webkit-mask-image:linear-gradient(0deg,#000 80%,transparent);mask-image:linear-gradient(0deg,#000 80%,transparent)}
+.head{position:sticky;top:0;z-index:15;padding:calc(16px + env(safe-area-inset-top)) 0 10px}
+.head-in{max-width:680px;margin:0 auto;padding:0 18px;position:relative;text-align:center}
+.head-share{position:absolute;top:50%;transform:translateY(-50%);right:14px}
+.head-share .btn{background:none;border-color:transparent;color:var(--muted2);padding:7px}
+.head-share .btn:hover{color:var(--muted)}
+.mark{display:inline-flex;align-items:center;gap:9px;color:var(--gold2);font-size:11.5px;letter-spacing:.16em}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 18px;position:relative}
 .eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted2);font-weight:600}
-.dawn{position:absolute;inset:-40% -10% auto -10%;height:75%;background:radial-gradient(60% 100% at 50% 0%,rgba(231,180,102,.22),rgba(125,144,236,.06) 45%,transparent 70%);filter:blur(6px);pointer-events:none}
 .ref{display:inline-block;font-family:var(--display);font-style:italic;font-size:17px;color:var(--gold2);position:relative}
 .dev{font-family:var(--deva);font-size:18px;line-height:2.05;color:var(--verse);white-space:pre-line;margin:13px 0 6px;position:relative}
 .translit{font-family:var(--display);font-style:italic;color:var(--muted);font-size:14px;line-height:1.5;white-space:pre-line;position:relative;margin-bottom:4px}
@@ -89,25 +99,25 @@ html,body{background:var(--night);min-height:100%}
 .guj{font-family:'Noto Serif Gujarati','Noto Serif Devanagari',serif;font-size:16px;line-height:1.75;color:var(--verse)}
 .ai-tag{font-family:var(--ui);font-size:9.5px;letter-spacing:.08em;color:var(--muted2);border:1px solid var(--line);border-radius:6px;padding:2px 6px;margin-left:8px;vertical-align:middle;white-space:nowrap;text-transform:uppercase}
 .cmp{margin-top:10px;position:relative}
-.cmp-btn{background:none;border:none;color:var(--krishna);font-family:var(--ui);font-size:12.5px;cursor:pointer;padding:2px 0;text-decoration:underline;text-underline-offset:3px}
+.cmp-btn{background:none;border:none;border-bottom:1px solid var(--line2);color:var(--muted);font-family:var(--ui);font-size:12.5px;letter-spacing:.04em;cursor:pointer;padding:0 0 3px;text-decoration:none}
+.cmp-btn:hover{color:var(--text);border-bottom-color:var(--gold)}
 .cmp-body{margin-top:8px;border-left:2px solid var(--line2);padding-left:12px}
 .cmp-row{font-size:14px;line-height:1.5;color:var(--muted);margin-top:9px}
 .cmp-row:first-child{margin-top:0}
 .cmp-lbl{display:block;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted2);margin-bottom:2px}
-.poolseg{margin:0 0 12px}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .btn{font-family:var(--ui);font-size:14px;font-weight:500;color:var(--text);background:rgba(125,144,236,.14);border:1px solid var(--line2);border-radius:12px;padding:11px 15px;cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:7px}
 .btn:hover{background:rgba(125,144,236,.24)}.btn:active{transform:translateY(1px)}
 .btn.gold{background:linear-gradient(180deg,var(--gold),#d99f4e);color:#2a1c05;border-color:transparent;font-weight:600}
 .btn.gold:hover{filter:brightness(1.06)}.btn.ghost{background:transparent}.btn.icon{padding:11px 12px}.btn:disabled{opacity:.5;cursor:default}
 .lbl{font-size:12.5px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
-textarea{width:100%;background:rgba(8,12,32,.5);border:1px solid var(--line);border-radius:14px;color:var(--text);font-family:var(--ui);font-size:15px;line-height:1.5;padding:13px 14px;resize:vertical;min-height:84px;outline:none}
+textarea{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--text);font-family:var(--ui);font-size:15px;line-height:1.5;padding:13px 14px;resize:vertical;min-height:84px;outline:none}
 textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:var(--gold2)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
-.chip{font-size:13.5px;color:var(--muted);background:rgba(125,144,236,.10);border:1px solid var(--line);border-radius:999px;padding:10px 15px;cursor:pointer;transition:.16s}
+.chip{font-size:13.5px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:10px 15px;cursor:pointer;transition:.16s}
 .chip:hover{color:var(--text);border-color:var(--line2)}
 .chip.on{background:rgba(231,180,102,.16);color:var(--gold2);border-color:rgba(231,180,102,.35)}
-.cnum{font-size:13px;color:var(--muted);background:rgba(125,144,236,.10);border:1px solid var(--line);border-radius:10px;min-width:38px;text-align:center;padding:8px 6px;cursor:pointer;transition:.16s}
+.cnum{font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:10px;min-width:38px;text-align:center;padding:8px 6px;cursor:pointer;transition:.16s}
 .cnum:hover{color:var(--text)}.cnum.on{background:rgba(231,180,102,.16);color:var(--gold2);border-color:rgba(231,180,102,.35)}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:7px;margin:12px 0 4px}
 .guide-out{margin-top:16px;font-size:15.5px;line-height:1.62;color:var(--text);white-space:pre-wrap}
@@ -116,35 +126,78 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 .spin{width:16px;height:16px;border:2px solid var(--line2);border-top-color:var(--gold);border-radius:50%;animation:sp .8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
 .disc{margin-top:14px;font-size:12px;color:var(--muted2);line-height:1.55}
-.mini{border:1px solid var(--line);border-radius:15px;padding:15px 16px;background:rgba(8,12,32,.32);margin-top:11px}
-.mini .ref{font-size:15px}.mini .en2{font-family:var(--display);font-size:18px;line-height:1.42;color:var(--verse);margin:10px 0 0;font-weight:500}.mini .note{font-size:13px;margin-top:10px}
+.mini{border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--surface);margin-top:11px}
+.mini .ref{font-size:15px}.mini .en2{font-family:var(--display);font-size:19px;line-height:1.42;color:var(--verse);margin:10px 0 0;font-weight:500}.mini .note{font-size:13px;margin-top:10px}
 .mini-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .star{cursor:pointer;color:var(--muted2);flex:none;padding:2px;transition:.16s}.star.on{color:var(--gold)}.star:hover{color:var(--gold2)}
-.search{width:100%;background:rgba(8,12,32,.5);border:1px solid var(--line);border-radius:14px;color:var(--text);font-family:var(--ui);font-size:15px;padding:13px 15px;outline:none;margin-bottom:6px}
+.search{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--text);font-family:var(--ui);font-size:15px;padding:13px 15px;outline:none;margin-bottom:6px}
 .search:focus{border-color:var(--krishna2)}
 .count{font-size:12.5px;color:var(--muted2);margin:14px 2px 2px}
 .empty{text-align:center;color:var(--muted);padding:30px 16px;font-size:14.5px;line-height:1.6}
 .empty .big{font-family:var(--display);font-size:21px;color:var(--text);font-style:italic;margin-bottom:8px}
-.sect-h{font-family:var(--display);font-size:26px;font-weight:600;margin:4px 0 2px}
+.sect-h{font-family:var(--display);font-size:28px;font-weight:600;margin:4px 0 2px}
 .sect-s{color:var(--muted);font-size:13.5px;margin-bottom:16px;line-height:1.5}
-.seg{display:inline-flex;background:rgba(8,12,32,.4);border:1px solid var(--line);border-radius:12px;padding:3px;gap:3px;margin-bottom:12px}
+.sect{text-align:center}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px;gap:3px;margin-bottom:12px}
 .seg button{border:none;background:none;color:var(--muted);font-family:var(--ui);font-size:13.5px;padding:8px 15px;border-radius:9px;cursor:pointer}
 .seg button.on{background:rgba(231,180,102,.16);color:var(--gold2)}
-.chtitle{font-family:var(--display);font-size:20px;color:var(--text);margin:8px 0 2px}
-.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(10,15,40,.86);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;z-index:20}
-.nav-in{max-width:680px;margin:0 auto;display:flex;width:100%}
-.tab{flex:1;background:none;border:none;color:var(--muted2);font-family:var(--ui);font-size:11px;padding:11px 0 max(11px,env(safe-area-inset-bottom));cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;transition:.16s}
-.tab.on{color:var(--gold2)}
+.chtitle{font-family:var(--display);font-size:22px;color:var(--text);margin:8px 0 2px}
+.nav{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:4px;background:rgba(13,18,46,.85);backdrop-filter:blur(16px);border:1px solid var(--line2);border-radius:22px;padding:6px;z-index:20}
+.tab{width:74px;background:none;border:none;color:var(--muted2);font-family:var(--ui);font-size:10.5px;border-radius:17px;padding:8px 0 7px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:.16s}
+.tab.on{background:rgba(231,180,102,.16);color:var(--gold2)}
 .stack>*+*{margin-top:14px}
+.tday{text-align:center;padding-top:4px}
+.t-eyebrow{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.t-refrow{display:inline-flex;align-items:center;gap:8px;margin-top:10px}
+.t-ref{font-family:var(--display);font-style:italic;font-size:19px;color:var(--gold2)}
+.t-dev{font-family:var(--deva);font-size:20px;line-height:2;color:var(--verse);white-space:pre-line;margin-top:22px}
+.t-rule{width:34px;height:1px;margin:24px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.t-en{font-family:var(--display);font-size:29px;line-height:1.4;font-weight:500;color:var(--verse);text-wrap:pretty}
+.t-guj{font-family:'Noto Serif Gujarati','Noto Serif Devanagari',serif;font-size:16px;line-height:1.75;color:#b8bedf;margin-top:18px}
+.t-note{font-family:var(--display);font-style:italic;font-size:17px;line-height:1.5;color:var(--gold2);margin-top:22px}
+.t-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 18px;margin-top:26px}
+.t-links .cmp{margin-top:0}
+.t-links .cmp:has(.cmp-body){flex-basis:100%}
+.t-links .cmp-body{max-width:460px;margin:14px auto 0;text-align:left}
+.t-disc{max-width:460px;margin:24px auto 0;text-align:left}
+.rows{display:flex;flex-direction:column;gap:10px;margin-top:26px;text-align:left}
+.rowlink{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:15px 16px;color:var(--text);font-family:var(--ui);font-size:14.5px;cursor:pointer;transition:.16s;user-select:none}
+.rowlink:hover{border-color:var(--line2)}
+.rowlink .ico{color:var(--gold);flex:none;display:inline-flex}
+.rowlink .cap{flex:1;line-height:1.4}
+.rowlink .chev{color:var(--muted2);flex:none;display:inline-flex;transition:.18s}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:left}
+.poolrow{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:24px}
+.poolrow .seg{margin-bottom:0}
 .fade{animation:fade .5s ease both}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.fade,.dawn{animation:none}.spin{animation-duration:1.4s}}
+@media (prefers-reduced-motion:reduce){.fade{animation:none}.rowlink .chev{transition:none}.spin{animation-duration:1.4s}}
+/* Tablet & desktop: hold the verse to a readable measure and let the type breathe. */
+@media (min-width:600px){
+  .wrap{padding:0 28px}.head-in{padding:0 28px}.head-share{right:24px}
+  .tday{max-width:600px;margin:0 auto}
+  .t-dev{font-size:23px}
+  .t-en{font-size:34px}
+  .t-guj{font-size:17px}
+  .t-note{font-size:19px}
+  .sect-h{font-size:32px}
+  .sect-s{font-size:14.5px}
+  .mini{padding:20px 22px}
+  .mini .en2{font-size:20px}
+  .cgrid{grid-template-columns:repeat(auto-fill,minmax(46px,1fr))}
+}
+@media (min-width:900px){
+  .wrap{max-width:760px}
+  .head-in{max-width:760px}
+  .t-en{font-size:36px}
+}
+@media (hover:hover){.tab:hover{color:var(--muted)}.tab.on:hover{color:var(--gold2)}}
 `;
 
-function Wheel({ s = 18 }) {
+function Wheel({ s = 18, spokes = [0,45,90,135] }) {
   return (<svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
     <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="2.4" />
-    {[0,45,90,135].map((a)=>(<line key={a} x1={12-7*Math.cos(a*Math.PI/180)} y1={12-7*Math.sin(a*Math.PI/180)} x2={12+7*Math.cos(a*Math.PI/180)} y2={12+7*Math.sin(a*Math.PI/180)} />))}
+    {spokes.map((a)=>(<line key={a} x1={12-7*Math.cos(a*Math.PI/180)} y1={12-7*Math.sin(a*Math.PI/180)} x2={12+7*Math.cos(a*Math.PI/180)} y2={12+7*Math.sin(a*Math.PI/180)} />))}
   </svg>);
 }
 const Star = ({ on }) => (<svg className={"star"+(on?" on":"")} width="20" height="20" viewBox="0 0 24 24" fill={on?"currentColor":"none"} stroke="currentColor" strokeWidth="1.5"><path d="M12 3.2l2.5 5.6 6.1.6-4.6 4 1.4 6-5.4-3.2L6.6 19.4l1.4-6-4.6-4 6.1-.6z" /></svg>);
@@ -152,6 +205,10 @@ function CompassIcon(){return(<svg width="20" height="20" viewBox="0 0 24 24" fi
 function GridIcon(){return(<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>);}
 function ShuffleIcon(){return(<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M3 7h4l3 5 3 5h5M3 17h4l3-5M14 7h5M17 4l3 3-3 3M17 14l3 3-3 3"/></svg>);}
 function ShareIcon(){return(<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.6M8.2 13.2l7.6 4.6"/></svg>);}
+function JournalIcon(){return(<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8 9h8M8 13h5"/></svg>);}
+function BookmarkIcon(){return(<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M7 4h10a1 1 0 011 1v15l-6-4-6 4V5a1 1 0 011-1z"/></svg>);}
+function Chevron(){return(<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M9 5l7 7-7 7"/></svg>);}
+const WEEKDAYS=["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
 
 const SARATHI_URL = "https://strokedoc.github.io/sarathi/";
 
@@ -170,7 +227,7 @@ const shareApp = () => {
   return shareOrCopy({ title: "Sārathi", text, url: SARATHI_URL }, `${text}\n${SARATHI_URL}`);
 };
 
-function ShareButton({ v, ghost }) {
+function ShareButton({ v, ghost, plain }) {
   const [flag, setFlag] = useState("");
   const onClick = async () => {
     const result = await shareVerse(v);
@@ -179,7 +236,7 @@ function ShareButton({ v, ghost }) {
   return (
     <span style={{ position: "relative", display: "inline-flex", alignItems: "center" }}>
       <button className={ghost ? "btn ghost icon" : "cmp-btn"} onClick={onClick} aria-label="Share verse">
-        {ghost ? <ShareIcon /> : <><ShareIcon /> Share</>}
+        {ghost ? <ShareIcon /> : plain ? "Share" : <><ShareIcon /> Share</>}
       </button>
       {flag && <span className="saved-pill" style={{ marginLeft: 8 }}>{flag}</span>}
     </span>
@@ -200,18 +257,19 @@ function ShareAppButton() {
   );
 }
 
-function GujaratiLine({ v }) {
+function GujaratiLine({ v, today }) {
   const baked = (FEAT[v.ref] && FEAT[v.ref].gu) || v.gu || null;
-  if (baked) return <div className="guj-wrap"><div className="guj">{baked}<span className="ai-tag">અનુવાદ</span></div></div>;
-  return null;
+  if (!baked) return null;
+  if (today) return <div className="t-guj fade" style={{ animationDelay: "160ms" }}>{baked}<span className="ai-tag">અનુવાદ</span></div>;
+  return <div className="guj-wrap"><div className="guj">{baked}<span className="ai-tag">અનુવાદ</span></div></div>;
 }
 
-function Readings({ v }) {
+function Readings({ v, label = "Compare readings" }) {
   const [open, setOpen] = useState(false);
   if (!v.es && !v.er) return null;
   return (
     <div className="cmp">
-      <button className="cmp-btn" onClick={() => setOpen(!open)}>{open ? "Hide other readings" : "Compare readings"}</button>
+      <button className="cmp-btn" onClick={() => setOpen(!open)}>{open ? "Hide other readings" : label}</button>
       {open && <div className="cmp-body">
         {v.es && <div className="cmp-row"><span className="cmp-lbl">Śaṅkara · Advaita</span>{v.es}</div>}
         {v.er && <div className="cmp-row"><span className="cmp-lbl">Rāmānuja · Viśiṣṭādvaita</span>{v.er}</div>}
@@ -230,7 +288,7 @@ function fetchChapterWM(ch) {
   }
   return wmCache.get(ch);
 }
-function WordByWord({ v }) {
+function WordByWord({ v, translit }) {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState({ status: "idle" });
   const toggle = () => {
@@ -254,6 +312,7 @@ function WordByWord({ v }) {
     <div className="cmp">
       <button className="cmp-btn" onClick={toggle}>{open ? "Hide word meanings" : "Word by word"}</button>
       {open && <div className="cmp-body">
+        {translit && <div className="translit" style={{ marginBottom: 12 }}>{translit}</div>}
         {state.status === "loading" && <div className="cmp-row">Loading…</div>}
         {state.status === "error" && <div className="disc">Couldn't load word meanings (offline?).</div>}
         {state.status === "ready" && rows.map((r, i) => (
@@ -414,14 +473,13 @@ export default function App() {
   };
 
   return (
-    <div className="app"><style>{CSS}</style><div className="wrap">
-      <div className="head">
+    <div className="app"><style>{CSS}</style>
+      <div className="topscrim bg-fixed" />
+      <header className="head"><div className="head-in">
         <ShareAppButton />
-        <div className="mark"><Wheel s={19} /><span style={{ fontSize: 12, letterSpacing: ".14em" }}>SĀRATHI</span></div>
-        <div className="brand">The Steady Mind</div>
-        <div className="tag">a daily compass · Bhagavad Gītā</div>
-      </div>
-
+        <div className="mark"><Wheel s={18} /><span>SĀRATHI</span></div>
+      </div></header>
+      <div className="wrap">
       {tab === "today" && <Today v={dayVerse} fav={favorites.includes(dayVerse.ref)} onFav={toggleFav}
         onShuffle={() => setShuffleRef(activeList[Math.floor(Math.random() * activeList.length)].ref)}
         isToday={!shuffleRef} pool={pool} setPool={choosePool}
@@ -432,11 +490,12 @@ export default function App() {
       {tab === "saved" && <Saved favorites={favorites} journal={journal} onFav={toggleFav} onExport={exportBackup} onImport={importBackup} />}
     </div>
 
-      <nav className="nav"><div className="nav-in">
-        {[["today","Today",<Wheel s={20}/>],["guidance","Guidance",<CompassIcon/>],["explore","Explore",<GridIcon/>],["saved","Saved",<Star on={false}/>]].map(([k,label,icon])=>(
+      <div className="botscrim bg-fixed" />
+      <nav className="nav">
+        {[["today","Today",<Wheel s={18} spokes={[0,90]}/>],["guidance","Guidance",<CompassIcon/>],["explore","Explore",<GridIcon/>],["saved","Saved",<Star on={false}/>]].map(([k,label,icon])=>(
           <button key={k} className={"tab"+(tab===k?" on":"")} onClick={()=>setTab(k)}>{icon}<span>{label}</span></button>
         ))}
-      </div></nav>
+      </nav>
     </div>
   );
 }
@@ -444,46 +503,57 @@ export default function App() {
 function Today({ v, fav, onFav, onShuffle, isToday, pool, setPool, entry, onSave, ready, bookmark, goToBookmark }) {
   const [text, setText] = useState(entry);
   const [flag, setFlag] = useState(false);
+  const [openJournal, setOpenJournal] = useState(false);
   useEffect(() => { setText(entry); }, [entry, v.ref]);
   const commit = () => { onSave(text); setFlag(true); setTimeout(() => setFlag(false), 1600); };
   const meta = FEAT[v.ref];
+  const eyebrow = isToday
+    ? `${WEEKDAYS[new Date().getDay()]} · ${pool === "curated" ? "Today · curated" : "Today's verse"}`
+    : "Drawn at random";
+  const firstLine = (entry || "").split("\n").find((l) => l.trim()) || "";
   return (
-    <div className="stack">
-      <div className="seg poolseg">
-        <button className={pool === "all" ? "on" : ""} onClick={() => setPool("all")}>All 701</button>
-        <button className={pool === "curated" ? "on" : ""} onClick={() => setPool("curated")}>Curated</button>
+    <div className="tday">
+      <div className="t-eyebrow fade">{eyebrow}</div>
+      <div className="t-refrow fade">
+        <span className="t-ref">Gītā {v.ref}</span>
+        <span onClick={() => onFav(v.ref)} role="button" aria-label="Save verse" style={{ display: "inline-flex", cursor: "pointer" }}><Star on={fav} /></span>
       </div>
-      <div className="card fade"><div className="dawn" />
-        <div className="eyebrow" style={{ position: "relative" }}>{isToday ? (pool === "curated" ? "Today · curated" : "Today's verse") : "Drawn at random"}</div>
-        <div style={{ height: 8 }} /><div className="ref">Gītā {v.ref}</div>
-        {v.sa && <div className="dev">{v.sa}</div>}
-        {v.tr && <div className="translit">{v.tr}</div>}
-        <div className="en">{v.en}</div>
-        <GujaratiLine v={v} />
-        {meta && <div className="note">{meta.note}</div>}
-        {meta && <div className="tagrow">{meta.themes.map((t) => <span className="ttag" key={t}>{t}</span>)}</div>}
-        <Explanation v={v} />
-        <div className="row" style={{ gap: 14, marginTop: 10 }}>
-          <Readings v={v} />
-          <WordByWord v={v} />
+      {v.sa && <div className="t-dev fade" style={{ animationDelay: "40ms" }}>{v.sa}</div>}
+      <div className="t-rule fade" style={{ animationDelay: "80ms" }} />
+      <div className="t-en fade" style={{ animationDelay: "120ms" }}>{v.en}</div>
+      <GujaratiLine v={v} today />
+      {meta && <div className="t-note fade" style={{ animationDelay: "200ms" }}>“{meta.note}”</div>}
+      <div className="t-disc"><Explanation v={v} /></div>
+      <div className="t-links">
+        <WordByWord v={v} translit={v.tr} />
+        <Readings v={v} label="Readings" />
+        <div className="cmp"><ShareButton v={v} plain /></div>
+      </div>
+      <div className="rows">
+        <button className="rowlink" onClick={() => setOpenJournal(!openJournal)} aria-expanded={openJournal}>
+          <span className="ico"><JournalIcon /></span>
+          <span className="cap">{firstLine || "Write today's reflection…"}</span>
+          <span className="chev" style={{ transform: openJournal ? "rotate(90deg)" : "none" }}><Chevron /></span>
+        </button>
+        {openJournal && <div className="panel fade">
+          <div className="lbl"><span>A reflection for today {flag && <span className="saved-pill">· saved</span>}</span></div>
+          <textarea value={text} placeholder="What does this verse stir in you today? Where does it meet your life right now?"
+            onChange={(e) => setText(e.target.value)} onBlur={commit} />
+          <div className="row" style={{ marginTop: 12 }}><button className="btn gold" onClick={commit} disabled={!ready}>Save reflection</button></div>
+        </div>}
+        {bookmark && <button className="rowlink" onClick={goToBookmark}>
+          <span className="ico"><BookmarkIcon /></span>
+          <span className="cap">Continue reading — Gītā {bookmark.ref} · {CHAPTERS[bookmark.ch - 1]}</span>
+          <span className="chev"><Chevron /></span>
+        </button>}
+      </div>
+      <div className="poolrow">
+        <div className="seg">
+          <button className={pool === "all" ? "on" : ""} onClick={() => setPool("all")}>All 701</button>
+          <button className={pool === "curated" ? "on" : ""} onClick={() => setPool("curated")}>Curated</button>
         </div>
-        <div className="row" style={{ marginTop: 18, position: "relative" }}>
-          <button className="btn ghost icon" onClick={() => onFav(v.ref)} aria-label="Save"><Star on={fav} /></button>
-          <ShareButton v={v} ghost />
-          <button className="btn" onClick={onShuffle}><ShuffleIcon /> Draw another verse</button>
-        </div>
+        <button className="cmp-btn" onClick={onShuffle} style={{ display: "inline-flex", alignItems: "center", gap: 7 }}><ShuffleIcon /> Draw another</button>
       </div>
-      <div className="card fade">
-        <div className="lbl"><span>A reflection for today {flag && <span className="saved-pill">· saved</span>}</span></div>
-        <textarea value={text} placeholder="What does this verse stir in you today? Where does it meet your life right now?"
-          onChange={(e) => setText(e.target.value)} onBlur={commit} />
-        <div className="row" style={{ marginTop: 12 }}><button className="btn gold" onClick={commit} disabled={!ready}>Save reflection</button></div>
-      </div>
-      {bookmark && <div className="card fade">
-        <div className="eyebrow">Continue reading</div>
-        <div style={{ marginTop: 8 }}><span className="ref">Gītā {bookmark.ref}</span> · {CHAPTERS[bookmark.ch - 1]}</div>
-        <div className="row" style={{ marginTop: 12 }}><button className="btn" onClick={goToBookmark}>Continue →</button></div>
-      </div>}
     </div>
   );
 }
@@ -526,7 +596,7 @@ function Guidance({ favorites, onFav }) {
   }, [out]);
   return (
     <div className="stack">
-      <div><div className="sect-h">What are you facing?</div>
+      <div className="sect"><div className="sect-h">What are you facing?</div>
         <div className="sect-s">Choose what you're facing. Sārathi reflects on it through the Gītā and surfaces the verses that speak to it — offline, always available.</div></div>
       <div className="card fade">
         <div className="chips">{chips.map(([l, full, theme]) => <button key={l} className="chip" onClick={() => ask(full, theme)}>{l}</button>)}</div>
@@ -574,10 +644,13 @@ function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue
   }, [jumpRef, onJumped]);
   return (
     <div className="stack">
-      <div><div className="sect-h">Explore the Gītā</div>
+      <div className="sect"><div className="sect-h">Explore the Gītā</div>
         <div className="sect-s">All 701 verses, with verified Sanskrit and translation. Browse the curated themes, or read straight through any chapter.</div></div>
-      {bookmarkRef && <button className="btn" style={{ alignSelf: "flex-start" }} onClick={onContinue}>
-        Continue reading — Gītā {bookmarkRef} · {CHAPTERS[bookmarkCh - 1]} →</button>}
+      {bookmarkRef && <button className="rowlink" onClick={onContinue}>
+        <span className="ico"><BookmarkIcon /></span>
+        <span className="cap">Continue reading — Gītā {bookmarkRef} · {CHAPTERS[bookmarkCh - 1]}</span>
+        <span className="chev"><Chevron /></span>
+      </button>}
       <div className="seg">
         <button className={mode === "all" ? "on" : ""} onClick={() => setMode("all")}>All verses</button>
         <button className={mode === "themes" ? "on" : ""} onClick={() => setMode("themes")}>Themes</button>
@@ -650,7 +723,7 @@ function Saved({ favorites, journal, onFav, onExport, onImport }) {
   };
   return (
     <div className="stack">
-      <div><div className="sect-h">Saved</div><div className="sect-s">Verses you've kept, and the reflections you've written.</div></div>
+      <div className="sect"><div className="sect-h">Saved</div><div className="sect-s">Verses you've kept, and the reflections you've written.</div></div>
       <div className="count">Favorite verses</div>
       {favVerses.length === 0 ? <div className="empty"><div className="big">No saved verses yet</div>Tap the star on any verse to keep it here.</div>
         : favVerses.map((v) => <VerseCard key={v.ref} v={v} fav onFav={onFav} />)}
