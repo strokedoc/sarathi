@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Design reference artifacts (large bundled prototypes, not app code)
+design-handoff
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

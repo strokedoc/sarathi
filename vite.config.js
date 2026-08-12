@@ -15,8 +15,8 @@ export default defineConfig({
         short_name: 'Sārathi',
         description:
           'A Bhagavad Gītā daily companion — 701 verses with Sanskrit, English, and Gujarati',
-        theme_color: '#0c1230',
-        background_color: '#0c1230',
+        theme_color: '#1c1d32',
+        background_color: '#0a0e24',
         display: 'standalone',
         start_url: '/sarathi/',
         scope: '/sarathi/',

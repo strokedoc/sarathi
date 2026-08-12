@@ -68,18 +68,20 @@ const CSS = `
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{--night:#070a1c;--night2:#0a0e24;--surface:rgba(176,188,255,.06);--surface2:rgba(176,188,255,.09);--line:rgba(176,188,255,.10);--line2:rgba(176,188,255,.20);--krishna:#7d90ec;--krishna2:#5566cf;--gold:#e7b466;--gold2:#f2cd8c;--text:#eef0fb;--verse:#f6efdf;--muted:#9aa3cb;--muted2:#6d76a3;--display:'Cormorant Garamond',Georgia,serif;--deva:'Noto Serif Devanagari',serif;--ui:'Inter',system-ui,-apple-system,sans-serif;
 --bg:radial-gradient(90% 42% at 50% 0%,rgba(231,180,102,.16),rgba(125,144,236,.05) 55%,transparent 75%),linear-gradient(180deg,#0a0e24,#070a1c 60%);
---headh:calc(58px + env(safe-area-inset-top));--navh:calc(104px + env(safe-area-inset-bottom))}
-html,body{background:var(--night);min-height:100%}
+--headh:calc(58px + env(safe-area-inset-top));--navh:calc(94px + env(safe-area-inset-bottom))}
+/* --night2, not --night: this is what shows behind the status bar and on
+   overscroll, so it must sit near the page's TOP colour, not its darkest. */
+html,body{background:var(--night2);min-height:100%}
 /* One viewport-anchored gradient, sampled identically by the page and by both
    scroll-edge scrims, so content dissolves into them with no visible seam. */
 .bg-fixed{background:var(--bg);background-size:100vw 100vh;background-repeat:no-repeat;background-position:top left}
-.app{position:relative;min-height:100vh;background:var(--night);color:var(--text);font-family:var(--ui);padding-bottom:calc(120px + env(safe-area-inset-bottom))}
+.app{position:relative;min-height:100vh;background:var(--night2);color:var(--text);font-family:var(--ui);padding-bottom:calc(104px + env(safe-area-inset-bottom))}
 .app::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--bg);background-size:100vw 100vh;background-repeat:no-repeat;background-position:top left}
 .wrap{max-width:680px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
 .topscrim{position:fixed;top:0;left:0;right:0;height:var(--headh);z-index:14;pointer-events:none;
   -webkit-mask-image:linear-gradient(180deg,#000 66%,transparent);mask-image:linear-gradient(180deg,#000 66%,transparent)}
 .botscrim{position:fixed;bottom:0;left:0;right:0;height:var(--navh);z-index:19;pointer-events:none;background-position:bottom left;
-  -webkit-mask-image:linear-gradient(0deg,#000 80%,transparent);mask-image:linear-gradient(0deg,#000 80%,transparent)}
+  -webkit-mask-image:linear-gradient(0deg,#000 85%,transparent);mask-image:linear-gradient(0deg,#000 85%,transparent)}
 .head{position:sticky;top:0;z-index:15;padding:calc(16px + env(safe-area-inset-top)) 0 10px}
 .head-in{max-width:680px;margin:0 auto;padding:0 18px;position:relative;text-align:center}
 .head-share{position:absolute;top:50%;transform:translateY(-50%);right:14px}
@@ -142,7 +144,7 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 .seg button{border:none;background:none;color:var(--muted);font-family:var(--ui);font-size:13.5px;padding:8px 15px;border-radius:9px;cursor:pointer}
 .seg button.on{background:rgba(231,180,102,.16);color:var(--gold2)}
 .chtitle{font-family:var(--display);font-size:22px;color:var(--text);margin:8px 0 2px}
-.nav{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:4px;background:rgba(13,18,46,.85);backdrop-filter:blur(16px);border:1px solid var(--line2);border-radius:22px;padding:6px;z-index:20}
+.nav{position:fixed;bottom:max(12px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:4px;background:rgba(13,18,46,.85);backdrop-filter:blur(16px);border:1px solid var(--line2);border-radius:22px;padding:6px;z-index:20}
 .tab{width:74px;background:none;border:none;color:var(--muted2);font-family:var(--ui);font-size:10.5px;border-radius:17px;padding:8px 0 7px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:.16s}
 .tab.on{background:rgba(231,180,102,.16);color:var(--gold2)}
 .stack>*+*{margin-top:14px}
