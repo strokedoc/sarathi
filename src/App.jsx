@@ -173,10 +173,12 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 .t-eyebrow{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .t-refrow{display:inline-flex;align-items:center;gap:8px;margin-top:10px}
 .t-ref{font-family:var(--display);font-style:italic;font-size:19px;color:var(--gold2)}
-.t-dev{font-family:var(--deva);font-size:calc(20px*var(--ts));line-height:2;color:var(--verse);white-space:pre-line;margin-top:22px}
+.t-dev{font-family:var(--deva);font-size:calc(23px*var(--ts));line-height:1.95;color:var(--verse);white-space:pre-line;margin-top:22px}
 .t-rule{width:34px;height:1px;margin:24px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.t-en{font-family:var(--display);font-size:calc(29px*var(--ts));line-height:1.4;font-weight:500;color:var(--verse);text-wrap:pretty}
-.t-guj{font-family:'Noto Serif Gujarati','Noto Serif Devanagari',serif;font-size:calc(26px*var(--ts));line-height:1.6;color:#b8bedf;margin-top:18px}
+.t-en{font-family:var(--display);font-size:calc(26px*var(--ts));line-height:1.4;font-weight:500;color:var(--verse);text-wrap:pretty}
+/* Gujarati carries a taller x-height than the Cormorant English, so it is set
+   a few px smaller to READ as the same size rather than measure the same. */
+.t-guj{font-family:'Noto Serif Gujarati','Noto Serif Devanagari',serif;font-size:calc(21px*var(--ts));line-height:1.65;color:#b8bedf;margin-top:18px}
 .t-note{font-family:var(--display);font-style:italic;font-size:calc(17px*var(--ts));line-height:1.5;color:var(--gold2);margin-top:22px}
 .t-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 18px;margin-top:26px}
 .t-links .cmp{margin-top:0}
@@ -199,9 +201,9 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 @media (min-width:600px){
   .wrap{padding:0 28px}.head-in{padding:0 28px}.head-share{right:24px}
   .tday{max-width:600px;margin:0 auto}
-  .t-dev{font-size:calc(23px*var(--ts))}
-  .t-en{font-size:calc(34px*var(--ts))}
-  .t-guj{font-size:calc(30px*var(--ts))}
+  .t-dev{font-size:calc(26px*var(--ts))}
+  .t-en{font-size:calc(30px*var(--ts))}
+  .t-guj{font-size:calc(24px*var(--ts))}
   .t-note{font-size:calc(19px*var(--ts))}
   .sect-h{font-size:32px}
   .sect-s{font-size:14.5px}
@@ -212,7 +214,7 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 @media (min-width:900px){
   .wrap{max-width:760px}
   .head-in{max-width:760px}
-  .t-en{font-size:calc(36px*var(--ts))}
+  .t-en{font-size:calc(32px*var(--ts))}
 }
 @media (hover:hover){.tab:hover{color:var(--muted)}.tab.on:hover{color:var(--gold2)}}
 `;
