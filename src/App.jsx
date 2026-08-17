@@ -235,6 +235,12 @@ const WEEKDAYS=["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SAT
 
 const SARATHI_URL = "https://strokedoc.github.io/sarathi/";
 
+// Per-chapter Sanskrit audio, hosted externally by Swargarohan (verified live
+// 2026-08-17: https://www.swargarohan.org/audio/bhagavad-gita, "Bhagavad
+// Gita : Sanskrit" playlist). We link out to their file, not host/embed our
+// own — avoids audio licensing entirely.
+const AUDIO_URL = (ch) => `https://www.swargarohan.net/media/bhagavad-gita/${String(ch).padStart(2, "0")}.mp3`;
+
 // Search without typing diacritics: "krishna" matches "kṛṣhṇa". IAST ṛ is
 // spoken "ri", so map it first; then strip combining marks after NFD.
 const fold = (s) => (s || "").toLowerCase().replace(/[ṛṝ]/g, "ri").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -827,6 +833,7 @@ function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue
               <button key={c} className={"cnum" + (chapter === c ? " on" : "")} onClick={() => setChapter(c)}>{c}</button>))}</div>
             <div className="chtitle">{chapter}. {CHAPTERS[chapter - 1]}</div>
             <div className="sect-s">{CHAP_INTRO[chapter - 1]}</div>
+            <a className="cmp-btn" href={AUDIO_URL(chapter)} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 6 }}>Listen — Sanskrit chanting (Swargarohan) ↗</a>
             <div className="count">{chapList.length} verses</div>
             {chapList.map((v) => <VerseCard key={v.ref} v={v} fav={favorites.includes(v.ref)} onFav={onFav} onMark={onMark} marked={bookmarkRef === v.ref} />)}
           </>
