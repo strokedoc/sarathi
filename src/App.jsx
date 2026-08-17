@@ -108,6 +108,10 @@ html,body{background:var(--night2);min-height:100%}
 .head-share{position:absolute;top:50%;transform:translateY(-50%);right:14px}
 .head-share .btn{background:none;border-color:transparent;color:var(--muted2);padding:7px}
 .head-share .btn:hover{color:var(--muted)}
+.head-size{position:absolute;top:50%;transform:translateY(-50%);left:14px}
+.head-size .btn{background:none;border-color:transparent;color:var(--muted2);padding:7px;font-family:var(--display);font-weight:600;line-height:1}
+.head-size .btn:hover{color:var(--muted)}
+.head-size .btn.on{color:var(--gold2)}
 .mark{display:inline-flex;align-items:center;gap:9px;color:var(--gold2);font-size:11.5px;letter-spacing:.16em}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 18px;position:relative}
 .eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted2);font-weight:600}
@@ -199,7 +203,7 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 @media (prefers-reduced-motion:reduce){.fade{animation:none}.rowlink .chev{transition:none}.spin{animation-duration:1.4s}}
 /* Tablet & desktop: hold the verse to a readable measure and let the type breathe. */
 @media (min-width:600px){
-  .wrap{padding:0 28px}.head-in{padding:0 28px}.head-share{right:24px}
+  .wrap{padding:0 28px}.head-in{padding:0 28px}.head-share{right:24px}.head-size{left:24px}
   .tday{max-width:600px;margin:0 auto}
   .t-dev{font-size:calc(26px*var(--ts))}
   .t-en{font-size:calc(30px*var(--ts))}
@@ -386,6 +390,20 @@ function ShareAppButton() {
     <span className="head-share" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
       {flag && <span className="saved-pill">{flag}</span>}
       <button className="btn ghost icon" onClick={onClick} aria-label="Share Sārathi"><ShareIcon /></button>
+    </span>
+  );
+}
+
+// Text size lives in the header so it is reachable from wherever you're
+// reading — Explore especially — not buried in a settings list.
+function TextSizeButton({ textSize, onChange }) {
+  const large = textSize === "large";
+  return (
+    <span className="head-size">
+      <button className={"btn ghost icon" + (large ? " on" : "")} onClick={() => onChange(large ? "normal" : "large")}
+        aria-pressed={large} aria-label={large ? "Use normal text size" : "Use large text size"}>
+        <span style={{ fontSize: large ? 19 : 15 }}>Aa</span>
+      </button>
     </span>
   );
 }
@@ -616,6 +634,7 @@ export default function App() {
     <div className={"app" + (textSize === "large" ? " ts-lg" : "")}><style>{CSS}</style>
       <div className="topscrim bg-fixed" />
       <header className="head"><div className="head-in">
+        <TextSizeButton textSize={textSize} onChange={chooseTextSize} />
         <ShareAppButton />
         <div className="mark"><Wheel s={18} /><span>SĀRATHI</span></div>
       </div></header>
@@ -627,7 +646,7 @@ export default function App() {
         bookmark={bookmark} goToBookmark={goToBookmark} />}
       {tab === "guidance" && <Guidance favorites={favorites} onFav={toggleFav} />}
       {tab === "explore" && <Explore favorites={favorites} onFav={toggleFav} onMark={setMark} bookmarkRef={bookmark?.ref} bookmarkCh={bookmark?.ch} onContinue={goToBookmark} jumpRef={jumpRef} onJumped={() => setJumpRef(null)} />}
-      {tab === "saved" && <Saved favorites={favorites} journal={journal} onFav={toggleFav} onExport={exportBackup} onImport={importBackup} textSize={textSize} onTextSize={chooseTextSize} />}
+      {tab === "saved" && <Saved favorites={favorites} journal={journal} onFav={toggleFav} onExport={exportBackup} onImport={importBackup} />}
     </div>
 
       <div className="botscrim bg-fixed" />
@@ -846,7 +865,7 @@ function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue
   );
 }
 
-function Saved({ favorites, journal, onFav, onExport, onImport, textSize, onTextSize }) {
+function Saved({ favorites, journal, onFav, onExport, onImport }) {
   const favVerses = favorites.map((r) => BYREF[r]).filter(Boolean);
   const entries = Object.entries(journal).sort((a, b) => b[0].localeCompare(a[0]));
   const fileRef = useRef(null);
@@ -886,12 +905,6 @@ function Saved({ favorites, journal, onFav, onExport, onImport, textSize, onText
         <input ref={fileRef} type="file" accept="application/json" style={{ display: "none" }} onChange={handleFile} />
       </div>
       {status && <div className="disc" style={{ marginTop: 8 }}>{status}</div>}
-      <div className="count" style={{ marginTop: 22 }}>Text size</div>
-      <div className="disc">Applies to verse and reading text everywhere in the app.</div>
-      <div className="seg" style={{ marginTop: 10 }}>
-        <button className={textSize === "normal" ? "on" : ""} onClick={() => onTextSize("normal")}>Normal</button>
-        <button className={textSize === "large" ? "on" : ""} onClick={() => onTextSize("large")}>Large</button>
-      </div>
     </div>
   );
 }
