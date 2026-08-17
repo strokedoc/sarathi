@@ -108,10 +108,11 @@ html,body{background:var(--night2);min-height:100%}
 .head-share{position:absolute;top:50%;transform:translateY(-50%);right:14px}
 .head-share .btn{background:none;border-color:transparent;color:var(--muted2);padding:7px}
 .head-share .btn:hover{color:var(--muted)}
-.head-size{position:absolute;top:50%;transform:translateY(-50%);left:14px}
-.head-size .btn{background:none;border-color:transparent;color:var(--muted2);padding:7px;font-family:var(--display);font-weight:600;line-height:1}
-.head-size .btn:hover{color:var(--muted)}
-.head-size .btn.on{color:var(--gold2)}
+/* Reading-size control sits beside the All verses/Themes switch in Explore —
+   the row you're already looking at when you want bigger type. */
+.segrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.segrow .seg{margin-bottom:0}
+.seg button.sz{font-family:var(--display);font-weight:600;line-height:1;padding:7px 14px}
 .mark{display:inline-flex;align-items:center;gap:9px;color:var(--gold2);font-size:11.5px;letter-spacing:.16em}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 18px;position:relative}
 .eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted2);font-weight:600}
@@ -212,7 +213,7 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 @media (prefers-reduced-motion:reduce){.fade{animation:none}.rowlink .chev{transition:none}.spin{animation-duration:1.4s}}
 /* Tablet & desktop: hold the verse to a readable measure and let the type breathe. */
 @media (min-width:600px){
-  .wrap{padding:0 28px}.head-in{padding:0 28px}.head-share{right:24px}.head-size{left:24px}
+  .wrap{padding:0 28px}.head-in{padding:0 28px}.head-share{right:24px}
   .tday{max-width:600px;margin:0 auto}
   .t-dev{font-size:calc(26px*var(--ts))}
   .t-en{font-size:calc(30px*var(--ts))}
@@ -403,17 +404,14 @@ function ShareAppButton() {
   );
 }
 
-// Text size lives in the header so it is reachable from wherever you're
-// reading — Explore especially — not buried in a settings list.
-function TextSizeButton({ textSize, onChange }) {
-  const large = textSize === "large";
+function TextSizeSeg({ textSize, onChange }) {
   return (
-    <span className="head-size">
-      <button className={"btn ghost icon" + (large ? " on" : "")} onClick={() => onChange(large ? "normal" : "large")}
-        aria-pressed={large} aria-label={large ? "Use normal text size" : "Use large text size"}>
-        <span style={{ fontSize: large ? 19 : 15 }}>Aa</span>
-      </button>
-    </span>
+    <div className="seg" role="group" aria-label="Reading text size">
+      <button className={"sz" + (textSize === "normal" ? " on" : "")} onClick={() => onChange("normal")}
+        aria-pressed={textSize === "normal"} aria-label="Normal text size" style={{ fontSize: 13 }}>A</button>
+      <button className={"sz" + (textSize === "large" ? " on" : "")} onClick={() => onChange("large")}
+        aria-pressed={textSize === "large"} aria-label="Large text size" style={{ fontSize: 17 }}>A</button>
+    </div>
   );
 }
 
@@ -643,7 +641,6 @@ export default function App() {
     <div className={"app" + (textSize === "large" ? " ts-lg" : "")}><style>{CSS}</style>
       <div className="topscrim bg-fixed" />
       <header className="head"><div className="head-in">
-        {tab !== "today" && <TextSizeButton textSize={textSize} onChange={chooseTextSize} />}
         <ShareAppButton />
         <div className="mark"><Wheel s={18} /><span>SĀRATHI</span></div>
       </div></header>
@@ -654,7 +651,7 @@ export default function App() {
         entry={journal[todayKey]?.text || ""} onSave={saveJournal} ready={ready}
         bookmark={bookmark} goToBookmark={goToBookmark} />}
       {tab === "guidance" && <Guidance favorites={favorites} onFav={toggleFav} />}
-      {tab === "explore" && <Explore favorites={favorites} onFav={toggleFav} onMark={setMark} bookmarkRef={bookmark?.ref} bookmarkCh={bookmark?.ch} onContinue={goToBookmark} jumpRef={jumpRef} onJumped={() => setJumpRef(null)} />}
+      {tab === "explore" && <Explore favorites={favorites} onFav={toggleFav} onMark={setMark} bookmarkRef={bookmark?.ref} bookmarkCh={bookmark?.ch} onContinue={goToBookmark} jumpRef={jumpRef} onJumped={() => setJumpRef(null)} textSize={textSize} onTextSize={chooseTextSize} />}
       {tab === "saved" && <Saved favorites={favorites} journal={journal} onFav={toggleFav} onExport={exportBackup} onImport={importBackup} />}
     </div>
 
@@ -778,7 +775,7 @@ function Guidance({ favorites, onFav }) {
   );
 }
 
-function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue, jumpRef, onJumped }) {
+function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue, jumpRef, onJumped, textSize, onTextSize }) {
   const [mode, setMode] = useState("all");
   const [scope, setScope] = useState("curated");
   const [theme, setTheme] = useState(null);
@@ -820,9 +817,12 @@ function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue
         <span className="cap">Continue reading — Gītā {bookmarkRef} · {CHAPTERS[bookmarkCh - 1]}</span>
         <span className="chev"><Chevron /></span>
       </button>}
-      <div className="seg">
-        <button className={mode === "all" ? "on" : ""} onClick={() => setMode("all")}>All verses</button>
-        <button className={mode === "themes" ? "on" : ""} onClick={() => setMode("themes")}>Themes</button>
+      <div className="segrow">
+        <div className="seg">
+          <button className={mode === "all" ? "on" : ""} onClick={() => setMode("all")}>All verses</button>
+          <button className={mode === "themes" ? "on" : ""} onClick={() => setMode("themes")}>Themes</button>
+        </div>
+        <TextSizeSeg textSize={textSize} onChange={onTextSize} />
       </div>
 
       {mode === "themes" && (<>
