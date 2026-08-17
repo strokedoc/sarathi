@@ -192,6 +192,12 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 .t-links .cmp:has(.cmp-body){flex-basis:100%}
 .t-links .cmp-body{max-width:460px;margin:14px auto 0;text-align:left}
 .t-disc{max-width:460px;margin:24px auto 0;text-align:left}
+.cmp-row.xpl-en{font-size:calc(14px*var(--ts));line-height:1.6;color:var(--muted)}
+.guj.xpl-gu{font-size:calc(14.5px*var(--ts));margin-top:8px}
+/* Today's explanation sits alone under the verse, so it carries a little more
+   size than the same block does inside a list card. */
+.t-disc .cmp-row.xpl-en{font-size:15.5px;line-height:1.62}
+.t-disc .guj.xpl-gu{font-size:15.5px;line-height:1.7}
 .rows{display:flex;flex-direction:column;gap:10px;margin-top:26px;text-align:left}
 .rowlink{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:15px 16px;color:var(--text);font-family:var(--ui);font-size:14.5px;cursor:pointer;transition:.16s;user-select:none}
 .rowlink:hover{border-color:var(--line2)}
@@ -510,8 +516,8 @@ function Explanation({ v }) {
   return (
     <div className="cmp">
       <span className="cmp-lbl">Explanation</span>
-      <div className="cmp-row" style={{ fontSize: "calc(14px*var(--ts))", lineHeight: 1.6, color: "var(--muted)" }}>{state.en}</div>
-      {state.gu && <div className="guj" style={{ fontSize: "calc(14.5px*var(--ts))", marginTop: 8 }}>{state.gu}</div>}
+      <div className="cmp-row xpl-en">{state.en}</div>
+      {state.gu && <div className="guj xpl-gu">{state.gu}</div>}
     </div>
   );
 }
