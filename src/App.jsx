@@ -29,6 +29,26 @@ const TH_NAMES=["Action & Duty","Letting Go of Outcomes","Equanimity","The Etern
 const VTHEM={"1.1":[0],"1.2":[0],"1.3":[0],"1.4":[0, 2],"1.5":[4, 5],"1.6":[5],"1.7":[4, 5],"1.8":[0, 3],"1.9":[0, 5],"1.10":[4, 5],"1.11":[5],"1.12":[5],"1.13":[4, 5],"1.14":[8],"1.15":[8, 5],"1.16":[4, 5],"1.17":[0],"1.18":[8],"1.19":[4, 5],"1.20":[0, 8],"1.21":[0, 8, 5],"1.22":[0, 5, 8],"1.23":[0, 6],"1.24":[8],"1.25":[8],"1.26":[11],"1.27":[8, 11],"1.28":[0, 8, 4],"1.29":[2, 5, 7],"1.30":[0, 5, 7],"1.31":[0],"1.32":[0, 8, 5],"1.33":[0, 5, 6],"1.34":[0, 3, 5],"1.35":[6, 8],"1.36":[8],"1.37":[8],"1.38":[6],"1.39":[0, 6, 8],"1.40":[0],"1.41":[8],"1.42":[4, 5],"1.43":[0],"1.44":[8, 0, 4],"1.45":[6],"1.46":[0, 11],"1.47":[4, 0, 7],"2.1":[4, 8, 11],"2.2":[0, 8],"2.3":[5],"2.4":[0, 8],"2.5":[6],"2.6":[0, 5],"2.7":[0, 8, 11],"2.8":[4],"2.9":[0, 8],"2.10":[8],"2.11":[4, 8],"2.12":[3, 2],"2.13":[3],"2.14":[2, 7],"2.15":[2, 3, 4],"2.16":[3],"2.17":[3],"2.18":[3, 0],"2.19":[3],"2.20":[3, 4],"2.21":[3],"2.22":[3, 4],"2.23":[3, 5],"2.24":[2, 3],"2.25":[3, 4],"2.26":[4, 3, 7],"2.27":[4, 2],"2.28":[4, 11],"2.29":[3],"2.30":[3, 4, 11],"2.31":[0, 7],"2.32":[0],"2.33":[0],"2.34":[3, 2],"2.35":[0, 7],"2.36":[5],"2.37":[5, 0],"2.38":[2, 0],"2.39":[0, 3, 7],"2.40":[5, 0],"2.41":[7, 0],"2.42":[0, 1, 6],"2.43":[0, 1, 6],"2.44":[7, 0, 1],"2.45":[0, 3, 5],"2.46":[3],"2.47":[0, 1],"2.48":[2, 0],"2.49":[0, 1, 8],"2.50":[0, 9],"2.51":[1, 7, 0],"2.52":[7],"2.53":[7, 2, 1],"2.54":[7, 8, 0],"2.55":[10, 9],"2.56":[2, 9],"2.57":[6, 7, 8],"2.58":[2, 7],"2.59":[3],"2.60":[7],"2.61":[7, 2],"2.62":[6, 7],"2.63":[6, 7],"2.64":[3, 6, 2],"2.65":[7, 2, 10],"2.66":[7, 1, 3],"2.67":[7],"2.68":[2, 7],"2.69":[3, 11],"2.70":[10, 6],"2.71":[10, 9],"2.72":[3],"3.1":[0, 8],"3.2":[7, 10, 11],"3.3":[0, 8],"3.4":[0, 1, 10],"3.5":[0, 3, 10],"3.6":[0, 3, 7],"3.7":[0, 7, 1],"3.8":[0],"3.9":[0, 6, 8],"3.10":[0, 6, 8],"3.11":[8, 11],"3.12":[0, 6],"3.13":[0],"3.14":[0, 11],"3.15":[3, 0],"3.16":[0],"3.17":[0, 3],"3.18":[0, 11],"3.19":[0, 1],"3.20":[0],"3.21":[0, 11],"3.22":[0, 10],"3.23":[0],"3.24":[0],"3.25":[0, 1, 6],"3.26":[0, 3, 8],"3.27":[3, 0, 7],"3.28":[0],"3.29":[7, 0],"3.30":[0, 1, 3],"3.31":[0, 8, 9],"3.32":[3, 7, 9],"3.33":[0, 3, 11],"3.34":[6, 8],"3.35":[0, 9],"3.36":[8, 6],"3.37":[6, 8],"3.38":[6],"3.39":[3, 6],"3.40":[7, 3],"3.41":[0, 1, 6],"3.42":[7, 3, 6],"3.43":[7, 0, 3],"4.1":[8],"4.2":[0, 8],"4.3":[0, 9],"4.4":[8],"4.5":[8],"4.6":[3, 8, 11],"4.7":[8, 5],"4.8":[8],"4.9":[0, 3, 8],"4.10":[6, 3, 8],"4.11":[1, 8],"4.12":[0, 1, 6],"4.13":[0, 10],"4.14":[1, 0, 6],"4.15":[0, 10],"4.16":[0],"4.17":[0],"4.18":[9, 2],"4.19":[6, 3],"4.20":[0, 1, 3],"4.21":[7, 6, 0],"4.22":[2, 7],"4.23":[0, 6, 7],"4.24":[0, 3, 7],"4.25":[0, 3],"4.26":[0, 3, 9],"4.27":[0, 3, 7],"4.28":[0, 1, 3],"4.29":[0, 6, 9],"4.30":[0, 3, 6],"4.31":[0, 1, 3],"4.32":[3, 0],"4.33":[0],"4.34":[11],"4.35":[3, 11],"4.36":[10],"4.37":[0],"4.38":[9, 10],"4.39":[8, 10],"4.40":[3, 7, 8],"4.41":[0, 2, 3],"4.42":[5, 3, 8],"5.1":[0, 8, 1],"5.2":[0, 8, 1],"5.3":[0, 1, 6],"5.4":[0, 1],"5.5":[0, 1, 9],"5.6":[3, 0, 1],"5.7":[0, 3, 7],"5.8":[0, 3, 7],"5.9":[7, 3, 10],"5.10":[1, 8],"5.11":[0, 7, 3],"5.12":[0, 1, 6],"5.13":[0, 3, 7],"5.14":[0, 1, 3],"5.15":[0, 3, 8],"5.16":[3],"5.17":[7, 8, 3],"5.18":[2],"5.19":[3, 2, 7],"5.20":[2, 3, 7],"5.21":[3, 1, 7],"5.22":[1, 4, 6],"5.23":[6, 3, 10],"5.24":[10, 3, 11],"5.25":[3, 6, 10],"5.26":[6, 3, 10],"5.27":[6, 7],"5.28":[6, 7, 10],"5.29":[10, 8],"6.1":[1, 0, 8],"6.2":[0, 1, 3],"6.3":[9, 0, 3],"6.4":[6, 0, 7],"6.5":[9, 5],"6.6":[9],"6.7":[2, 10, 3],"6.8":[2, 3, 6],"6.9":[2, 0, 4],"6.10":[6, 7, 2],"6.11":[7, 9],"6.12":[7, 9, 3],"6.13":[2, 10],"6.14":[2, 5, 7],"6.15":[7, 10, 2],"6.16":[9, 10],"6.17":[0, 2, 4],"6.18":[6, 7, 3],"6.19":[7, 10],"6.20":[10, 3, 7],"6.21":[10, 3, 7],"6.22":[4, 7],"6.23":[4, 7],"6.24":[7, 6, 1],"6.25":[7, 10, 3],"6.26":[7, 9],"6.27":[10, 3, 6],"6.28":[3, 7, 9],"6.29":[2, 3, 7],"6.30":[8, 11],"6.31":[11],"6.32":[11, 2],"6.33":[2, 7, 8],"6.34":[7, 8],"6.35":[7, 9],"6.36":[7, 3],"6.37":[7, 8],"6.38":[3, 4, 8],"6.39":[8],"6.40":[8, 0, 4],"6.41":[0, 4],"6.42":[7, 9],"6.43":[7],"6.44":[3, 9],"6.45":[7, 9],"6.46":[0, 7],"6.47":[3, 7, 8],"7.1":[8, 7, 9],"7.2":[0, 8],"7.3":[5],"7.4":[7, 3],"7.5":[3],"7.6":[11],"7.7":[8, 3],"7.8":[8, 3],"7.9":[11],"7.10":[5, 7, 11],"7.11":[6, 0, 5],"7.12":[8, 3],"7.13":[8, 3],"7.14":[8],"7.15":[8],"7.16":[0, 8, 6],"7.17":[8],"7.18":[3, 7, 10],"7.19":[3, 8],"7.20":[6, 8],"7.21":[8, 6],"7.22":[6, 8],"7.23":[1, 0, 7],"7.24":[7, 3],"7.25":[3],"7.26":[11],"7.27":[5, 6, 11],"7.28":[0, 8],"7.29":[3, 0, 8],"7.30":[0, 2, 7],"8.1":[3, 8, 0],"8.2":[3, 0, 8],"8.3":[3, 8, 0],"8.4":[3, 8, 0],"8.5":[3, 10],"8.6":[7],"8.7":[7, 0],"8.8":[3, 7, 8],"8.9":[3, 10],"8.10":[2, 8, 3],"8.11":[6, 9, 3],"8.12":[7, 8, 9],"8.13":[3],"8.14":[7],"8.15":[1, 3],"8.16":[3],"8.17":[2],"8.18":[3, 10],"8.19":[3, 10],"8.20":[3, 11],"8.21":[3, 10],"8.22":[3, 8, 11],"8.23":[3, 10],"8.24":[3],"8.25":[3, 10],"8.26":[7],"8.27":[9],"8.28":[0, 1, 9],"9.1":[8, 0, 3],"9.2":[0, 9],"9.3":[0, 3, 8],"9.4":[11],"9.5":[3, 8, 11],"9.6":[10, 11],"9.7":[3, 11],"9.8":[8, 3],"9.9":[1],"9.10":[8, 3],"9.11":[8, 11],"9.12":[7],"9.13":[8, 3, 7],"9.14":[8, 5],"9.15":[0, 8],"9.16":[0, 8],"9.17":[1, 2],"9.18":[8, 1],"9.19":[9, 10],"9.20":[8, 1],"9.21":[0, 6, 8],"9.22":[8, 10],"9.23":[8],"9.24":[0, 8],"9.25":[0, 8],"9.26":[7, 1, 8],"9.27":[0, 9],"9.28":[1, 0, 3],"9.29":[8, 11],"9.30":[0, 8],"9.31":[0, 5, 7],"9.32":[8],"9.33":[8],"9.34":[8],"10.1":[8, 11],"10.2":[3, 8],"10.3":[8],"10.4":[7, 3, 4],"10.5":[11],"10.6":[7],"10.7":[8, 10],"10.8":[8],"10.9":[10],"10.10":[7, 8],"10.11":[3, 11],"10.12":[3, 8, 10],"10.13":[8, 3, 10],"10.14":[8],"10.15":[3, 8, 11],"10.16":[8],"10.17":[7, 8],"10.18":[8, 3],"10.19":[8],"10.20":[3, 11],"10.21":[3, 8],"10.22":[2, 7],"10.23":[8],"10.24":[8],"10.25":[0, 8],"10.26":[8],"10.27":[8],"10.28":[8, 6],"10.29":[8],"10.30":[3, 8],"10.31":[3, 8],"10.32":[3],"10.33":[1, 3],"10.34":[0, 7, 8],"10.35":[2],"10.36":[5],"10.37":[8],"10.38":[0, 6, 10],"10.39":[11],"10.40":[8],"10.41":[3, 8],"10.42":[3, 8],"11.1":[3, 1, 8],"11.2":[8, 11],"11.3":[8, 3, 6],"11.4":[3, 7, 8],"11.5":[8],"11.6":[3, 5],"11.7":[6],"11.8":[8],"11.9":[8],"11.10":[8],"11.11":[8],"11.12":[8, 2, 3],"11.13":[8],"11.14":[8],"11.15":[8],"11.16":[8],"11.17":[3, 5],"11.18":[3, 0, 10],"11.19":[0],"11.20":[3, 8],"11.21":[3, 5],"11.22":[8],"11.23":[3, 5],"11.24":[3, 5, 7],"11.25":[10, 8, 11],"11.26":[0],"11.27":[3, 5],"11.28":[3, 5],"11.29":[3, 5],"11.30":[3, 5],"11.31":[6, 8, 11],"11.32":[8, 0],"11.33":[0, 1],"11.34":[0, 5],"11.35":[8],"11.36":[8],"11.37":[3, 8],"11.38":[3, 8, 10],"11.39":[8],"11.40":[5, 0, 11],"11.41":[8],"11.42":[2, 8],"11.43":[2, 5, 8],"11.44":[8],"11.45":[8, 7, 11],"11.46":[6],"11.47":[8, 1, 3],"11.48":[0],"11.49":[5, 7],"11.50":[8, 3],"11.51":[8, 2, 7],"11.52":[8],"11.53":[0, 8],"11.54":[8],"11.55":[0, 6, 11],"12.1":[8],"12.2":[8, 7],"12.3":[8, 11],"12.4":[11, 2],"12.5":[8, 11],"12.6":[8, 7],"12.7":[8, 11],"12.8":[7, 10],"12.9":[7, 9],"12.10":[2, 3, 9],"12.11":[1, 7, 8],"12.12":[1, 0, 3],"12.13":[11, 2],"12.14":[7, 2, 3],"12.15":[2, 10],"12.16":[1, 2, 6],"12.17":[6, 4, 8],"12.18":[4, 6],"12.19":[2, 7, 8],"12.20":[0, 8, 3],"13.1":[3, 8],"13.2":[8, 3],"13.3":[3],"13.4":[3],"13.5":[3, 7],"13.6":[7, 0],"13.7":[3, 4, 6],"13.8":[3, 7, 9],"13.9":[6, 1, 4],"13.10":[1, 3, 6],"13.11":[8],"13.12":[3],"13.13":[3, 10],"13.14":[7],"13.15":[1, 10],"13.16":[11],"13.17":[3, 11],"13.18":[3, 2],"13.19":[3],"13.20":[3, 8],"13.21":[3, 4, 8],"13.22":[3, 6, 8],"13.23":[3, 8],"13.24":[3, 0, 8],"13.25":[0, 7, 3],"13.26":[8, 10],"13.27":[1, 3],"13.28":[8, 11],"13.29":[8, 3, 7],"13.30":[0, 3],"13.31":[3, 11],"13.32":[0, 3],"13.33":[3],"13.34":[3, 8],"13.35":[3],"14.1":[8],"14.2":[3, 8],"14.3":[3, 11],"14.4":[3],"14.5":[3, 6, 11],"14.6":[6],"14.7":[6, 3, 0],"14.8":[3, 2],"14.9":[6, 0],"14.10":[6],"14.11":[3, 2],"14.12":[0, 6],"14.13":[7],"14.14":[3],"14.15":[0, 3, 6],"14.16":[0, 1, 4],"14.17":[6],"14.18":[6, 10],"14.19":[0, 3, 8],"14.20":[3, 4],"14.21":[0, 8],"14.22":[8],"14.23":[0, 2, 3],"14.24":[2, 3, 4],"14.25":[1, 2],"14.26":[3, 8],"14.27":[3, 0, 10],"15.1":[8],"15.2":[0],"15.3":[1, 5, 6],"15.4":[8, 3],"15.5":[6, 3, 4],"15.6":[3, 8],"15.7":[3, 7, 10],"15.8":[3, 8],"15.9":[7],"15.10":[3, 8],"15.11":[3, 9],"15.12":[3, 8],"15.13":[5, 11],"15.14":[3, 8],"15.15":[7],"15.16":[11],"15.17":[3, 8],"15.18":[3, 8],"15.19":[8, 3],"15.20":[0],"16.1":[8, 3, 7],"16.2":[6, 11, 1],"16.3":[8, 10],"16.4":[6, 3],"16.5":[8],"16.6":[8],"16.7":[0, 1],"16.8":[6, 8, 3],"16.9":[7],"16.10":[0, 6, 3],"16.11":[6],"16.12":[6],"16.13":[6, 10],"16.14":[8],"16.15":[0, 2, 7],"16.16":[6],"16.17":[0, 3],"16.18":[6],"16.19":[6, 9],"16.20":[4, 10],"16.21":[6, 9],"16.22":[3, 11],"16.23":[6],"16.24":[0],"17.1":[8, 0, 6],"17.2":[8, 6],"17.3":[8, 11],"17.4":[8, 0],"17.5":[6, 5, 9],"17.6":[8, 9],"17.7":[0],"17.8":[5, 7],"17.9":[4, 6],"17.10":[0, 8],"17.11":[1, 0, 8],"17.12":[1, 0, 3],"17.13":[0, 8],"17.14":[8, 9],"17.15":[9],"17.16":[7, 2, 3],"17.17":[1, 3, 6],"17.18":[1, 3, 6],"17.19":[3],"17.20":[0, 7],"17.21":[1, 6],"17.22":[0, 1],"17.23":[3],"17.24":[3, 0],"17.25":[1, 0, 6],"17.26":[0],"17.27":[0, 8],"17.28":[0, 8],"18.1":[6, 1, 8],"18.2":[1, 8, 0],"18.3":[0, 9],"18.4":[0],"18.5":[0, 3, 9],"18.6":[1, 6, 7],"18.7":[0, 1],"18.8":[1, 0, 6],"18.9":[0, 1, 6],"18.10":[1, 3, 0],"18.11":[1, 0, 10],"18.12":[1, 0, 6],"18.13":[0],"18.14":[0, 8],"18.15":[7, 0],"18.16":[7, 3],"18.17":[0, 6, 7],"18.18":[0],"18.19":[0],"18.20":[11],"18.21":[6, 11],"18.22":[0],"18.23":[1, 0, 6],"18.24":[0, 6],"18.25":[0, 1, 5],"18.26":[0, 5, 6],"18.27":[1, 4, 6],"18.28":[0, 1],"18.29":[7],"18.30":[0, 7, 10],"18.31":[0, 7, 6],"18.32":[0, 7, 9],"18.33":[1, 2, 7],"18.34":[6, 0, 1],"18.35":[4, 6, 7],"18.36":[9],"18.37":[3, 7, 1],"18.38":[1, 6],"18.39":[3],"18.40":[0, 1],"18.41":[0],"18.42":[0, 7, 8],"18.43":[0, 1, 5],"18.44":[0, 11],"18.45":[0, 8],"18.46":[0, 8, 11],"18.47":[0],"18.48":[0, 5],"18.49":[1, 6, 0],"18.50":[3],"18.51":[7, 6, 3],"18.52":[0, 1, 3],"18.53":[6, 3, 10],"18.54":[3, 6, 10],"18.55":[8],"18.56":[8],"18.57":[7, 1, 8],"18.58":[8, 9],"18.59":[0, 3, 7],"18.60":[0, 6],"18.61":[8, 11],"18.62":[8, 5, 10],"18.63":[0, 7],"18.64":[7, 11],"18.65":[7, 0, 8],"18.66":[8, 10],"18.67":[8, 6, 11],"18.68":[8],"18.69":[0, 11],"18.70":[0, 8, 9],"18.71":[0, 5, 8],"18.72":[7],"18.73":[8, 0, 5],"18.74":[8, 3, 5],"18.75":[8],"18.76":[7, 8],"18.77":[7, 8],"18.78":[5, 8]};
 const BYREF = Object.fromEntries(GITA.map((v) => [v.ref, v]));
 
+// Daily order: a fixed shuffle of each pool, walked one verse per day from a
+// fixed epoch — every verse appears once before any repeats (701-day cycle).
+function dailyOrder(n, seed) {
+  let s = seed >>> 0;
+  const rnd = () => {
+    s = (s + 0x6d2b79f5) >>> 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const a = Array.from({ length: n }, (_, i) => i);
+  for (let i = n - 1; i > 0; i--) {
+    const j = Math.floor(rnd() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+const DAY_ORDER_ALL = dailyOrder(GITA.length, 108);
+const DAY_ORDER_CURATED = dailyOrder(FEATURED_LIST.length, 108);
+
 const KEYWORD_THEMES = [
   [["grief","grieve","loss","lost someone","died","death","passed away","mourn","funeral"],["Grief & Loss","The Eternal Self"]],
   [["anxious","anxiety","worried","worry","afraid","fear","scared","nervous","dread","panic"],["Courage","Equanimity","The Restless Mind"]],
@@ -66,7 +86,7 @@ function matchVerses(text, max = 5) {
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=Noto+Serif+Devanagari:wght@400;500&family=Noto+Serif+Gujarati:wght@400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--night:#070a1c;--night2:#0a0e24;--surface:rgba(176,188,255,.06);--surface2:rgba(176,188,255,.09);--line:rgba(176,188,255,.10);--line2:rgba(176,188,255,.20);--krishna:#7d90ec;--krishna2:#5566cf;--gold:#e7b466;--gold2:#f2cd8c;--text:#eef0fb;--verse:#f6efdf;--muted:#9aa3cb;--muted2:#6d76a3;--display:'Cormorant Garamond',Georgia,serif;--deva:'Noto Serif Devanagari',serif;--ui:'Inter',system-ui,-apple-system,sans-serif;
+:root{--ts:1;--night:#070a1c;--night2:#0a0e24;--surface:rgba(176,188,255,.06);--surface2:rgba(176,188,255,.09);--line:rgba(176,188,255,.10);--line2:rgba(176,188,255,.20);--krishna:#7d90ec;--krishna2:#5566cf;--gold:#e7b466;--gold2:#f2cd8c;--text:#eef0fb;--verse:#f6efdf;--muted:#9aa3cb;--muted2:#6d76a3;--display:'Cormorant Garamond',Georgia,serif;--deva:'Noto Serif Devanagari',serif;--ui:'Inter',system-ui,-apple-system,sans-serif;
 --bg:radial-gradient(90% 42% at 50% 0%,rgba(231,180,102,.16),rgba(125,144,236,.05) 55%,transparent 75%),linear-gradient(180deg,#0a0e24,#070a1c 60%);
 --headh:calc(58px + env(safe-area-inset-top));--navh:calc(94px + env(safe-area-inset-bottom))}
 /* --night2, not --night: this is what shows behind the status bar and on
@@ -75,6 +95,7 @@ html,body{background:var(--night2);min-height:100%}
 /* One viewport-anchored gradient, sampled identically by the page and by both
    scroll-edge scrims, so content dissolves into them with no visible seam. */
 .bg-fixed{background:var(--bg);background-size:100vw 100vh;background-repeat:no-repeat;background-position:top left}
+.app.ts-lg{--ts:1.18}
 .app{position:relative;min-height:100vh;background:var(--night2);color:var(--text);font-family:var(--ui);padding-bottom:calc(104px + env(safe-area-inset-bottom))}
 .app::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--bg);background-size:100vw 100vh;background-repeat:no-repeat;background-position:top left}
 .wrap{max-width:680px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
@@ -91,20 +112,20 @@ html,body{background:var(--night2);min-height:100%}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 18px;position:relative}
 .eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted2);font-weight:600}
 .ref{display:inline-block;font-family:var(--display);font-style:italic;font-size:17px;color:var(--gold2);position:relative}
-.dev{font-family:var(--deva);font-size:18px;line-height:2.05;color:var(--verse);white-space:pre-line;margin:13px 0 6px;position:relative}
+.dev{font-family:var(--deva);font-size:calc(18px*var(--ts));line-height:2.05;color:var(--verse);white-space:pre-line;margin:13px 0 6px;position:relative}
 .translit{font-family:var(--display);font-style:italic;color:var(--muted);font-size:14px;line-height:1.5;white-space:pre-line;position:relative;margin-bottom:4px}
-.en{font-family:var(--display);font-size:22px;line-height:1.45;color:var(--verse);margin:14px 0 2px;position:relative;font-weight:500}
-.note{position:relative;color:var(--krishna);font-size:14px;margin-top:12px;padding-left:13px;border-left:2px solid var(--krishna2)}
+.en{font-family:var(--display);font-size:calc(22px*var(--ts));line-height:1.45;color:var(--verse);margin:14px 0 2px;position:relative;font-weight:500}
+.note{position:relative;color:var(--krishna);font-size:calc(14px*var(--ts));margin-top:12px;padding-left:13px;border-left:2px solid var(--krishna2)}
 .tagrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px;position:relative}
 .ttag{font-size:11px;color:var(--krishna);background:rgba(125,144,236,.10);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
 .guj-wrap{position:relative;margin-top:12px}
-.guj{font-family:'Noto Serif Gujarati','Noto Serif Devanagari',serif;font-size:16px;line-height:1.75;color:var(--verse)}
+.guj{font-family:'Noto Serif Gujarati','Noto Serif Devanagari',serif;font-size:calc(16px*var(--ts));line-height:1.75;color:var(--verse)}
 .ai-tag{font-family:var(--ui);font-size:9.5px;letter-spacing:.08em;color:var(--muted2);border:1px solid var(--line);border-radius:6px;padding:2px 6px;margin-left:8px;vertical-align:middle;white-space:nowrap;text-transform:uppercase}
 .cmp{margin-top:10px;position:relative}
 .cmp-btn{background:none;border:none;border-bottom:1px solid var(--line2);color:var(--muted);font-family:var(--ui);font-size:12.5px;letter-spacing:.04em;cursor:pointer;padding:0 0 3px;text-decoration:none}
 .cmp-btn:hover{color:var(--text);border-bottom-color:var(--gold)}
 .cmp-body{margin-top:8px;border-left:2px solid var(--line2);padding-left:12px}
-.cmp-row{font-size:14px;line-height:1.5;color:var(--muted);margin-top:9px}
+.cmp-row{font-size:calc(14px*var(--ts));line-height:1.5;color:var(--muted);margin-top:9px}
 .cmp-row:first-child{margin-top:0}
 .cmp-lbl{display:block;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted2);margin-bottom:2px}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -122,14 +143,14 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 .cnum{font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:10px;min-width:38px;text-align:center;padding:8px 6px;cursor:pointer;transition:.16s}
 .cnum:hover{color:var(--text)}.cnum.on{background:rgba(231,180,102,.16);color:var(--gold2);border-color:rgba(231,180,102,.35)}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:7px;margin:12px 0 4px}
-.guide-out{margin-top:16px;font-size:15.5px;line-height:1.62;color:var(--text);white-space:pre-wrap}
+.guide-out{margin-top:16px;font-size:calc(15.5px*var(--ts));line-height:1.62;color:var(--text);white-space:pre-wrap}
 .guide-out .vref{color:var(--gold2);font-weight:600;font-family:var(--display);font-style:italic}
 .thinking{display:flex;align-items:center;gap:11px;color:var(--muted);font-size:14px;margin-top:14px}
 .spin{width:16px;height:16px;border:2px solid var(--line2);border-top-color:var(--gold);border-radius:50%;animation:sp .8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
 .disc{margin-top:14px;font-size:12px;color:var(--muted2);line-height:1.55}
 .mini{border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--surface);margin-top:11px}
-.mini .ref{font-size:15px}.mini .en2{font-family:var(--display);font-size:19px;line-height:1.42;color:var(--verse);margin:10px 0 0;font-weight:500}.mini .note{font-size:13px;margin-top:10px}
+.mini .ref{font-size:15px}.mini .en2{font-family:var(--display);font-size:calc(19px*var(--ts));line-height:1.42;color:var(--verse);margin:10px 0 0;font-weight:500}.mini .note{font-size:13px;margin-top:10px}
 .mini-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .star{cursor:pointer;color:var(--muted2);flex:none;padding:2px;transition:.16s}.star.on{color:var(--gold)}.star:hover{color:var(--gold2)}
 .search{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--text);font-family:var(--ui);font-size:15px;padding:13px 15px;outline:none;margin-bottom:6px}
@@ -152,11 +173,11 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 .t-eyebrow{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .t-refrow{display:inline-flex;align-items:center;gap:8px;margin-top:10px}
 .t-ref{font-family:var(--display);font-style:italic;font-size:19px;color:var(--gold2)}
-.t-dev{font-family:var(--deva);font-size:20px;line-height:2;color:var(--verse);white-space:pre-line;margin-top:22px}
+.t-dev{font-family:var(--deva);font-size:calc(20px*var(--ts));line-height:2;color:var(--verse);white-space:pre-line;margin-top:22px}
 .t-rule{width:34px;height:1px;margin:24px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.t-en{font-family:var(--display);font-size:29px;line-height:1.4;font-weight:500;color:var(--verse);text-wrap:pretty}
-.t-guj{font-family:'Noto Serif Gujarati','Noto Serif Devanagari',serif;font-size:16px;line-height:1.75;color:#b8bedf;margin-top:18px}
-.t-note{font-family:var(--display);font-style:italic;font-size:17px;line-height:1.5;color:var(--gold2);margin-top:22px}
+.t-en{font-family:var(--display);font-size:calc(29px*var(--ts));line-height:1.4;font-weight:500;color:var(--verse);text-wrap:pretty}
+.t-guj{font-family:'Noto Serif Gujarati','Noto Serif Devanagari',serif;font-size:calc(26px*var(--ts));line-height:1.6;color:#b8bedf;margin-top:18px}
+.t-note{font-family:var(--display);font-style:italic;font-size:calc(17px*var(--ts));line-height:1.5;color:var(--gold2);margin-top:22px}
 .t-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 18px;margin-top:26px}
 .t-links .cmp{margin-top:0}
 .t-links .cmp:has(.cmp-body){flex-basis:100%}
@@ -178,20 +199,20 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 @media (min-width:600px){
   .wrap{padding:0 28px}.head-in{padding:0 28px}.head-share{right:24px}
   .tday{max-width:600px;margin:0 auto}
-  .t-dev{font-size:23px}
-  .t-en{font-size:34px}
-  .t-guj{font-size:17px}
-  .t-note{font-size:19px}
+  .t-dev{font-size:calc(23px*var(--ts))}
+  .t-en{font-size:calc(34px*var(--ts))}
+  .t-guj{font-size:calc(30px*var(--ts))}
+  .t-note{font-size:calc(19px*var(--ts))}
   .sect-h{font-size:32px}
   .sect-s{font-size:14.5px}
   .mini{padding:20px 22px}
-  .mini .en2{font-size:20px}
+  .mini .en2{font-size:calc(20px*var(--ts))}
   .cgrid{grid-template-columns:repeat(auto-fill,minmax(46px,1fr))}
 }
 @media (min-width:900px){
   .wrap{max-width:760px}
   .head-in{max-width:760px}
-  .t-en{font-size:36px}
+  .t-en{font-size:calc(36px*var(--ts))}
 }
 @media (hover:hover){.tab:hover{color:var(--muted)}.tab.on:hover{color:var(--gold2)}}
 `;
@@ -214,14 +235,116 @@ const WEEKDAYS=["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SAT
 
 const SARATHI_URL = "https://strokedoc.github.io/sarathi/";
 
+// Search without typing diacritics: "krishna" matches "kṛṣhṇa". IAST ṛ is
+// spoken "ri", so map it first; then strip combining marks after NFD.
+const fold = (s) => (s || "").toLowerCase().replace(/[ṛṝ]/g, "ri").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
 async function shareOrCopy(payload, text) {
   if (navigator.share) {
     try { await navigator.share(payload); return null; } catch (e) { if (e && e.name === "AbortError") return null; }
   }
   try { await navigator.clipboard.writeText(text); return "copied"; } catch (e) { return null; }
 }
-const shareVerse = (v) => {
+// Verse card image in the app's own night/gold look, for WhatsApp-style sharing.
+async function drawVerseCard(v) {
+  const W = 1080, PAD = 96, TW = W - PAD * 2;
+  const gu = (FEAT[v.ref] && FEAT[v.ref].gu) || v.gu || "";
+  const enSize = v.en.length > 240 ? 44 : v.en.length > 140 ? 50 : 58;
+  const F = {
+    eyebrow: '600 26px Inter, sans-serif',
+    dev: '500 44px "Noto Serif Devanagari", serif',
+    en: `500 ${enSize}px "Cormorant Garamond", Georgia, serif`,
+    gu: '400 38px "Noto Serif Gujarati", "Noto Serif Devanagari", serif',
+    foot: '600 24px Inter, sans-serif',
+    url: '400 22px Inter, sans-serif',
+  };
+  try { await Promise.all(Object.values(F).map((f) => document.fonts.load(f))); } catch {}
+  const c = document.createElement("canvas");
+  c.width = W; c.height = 200; // provisional; real height set after layout pass
+  const x = c.getContext("2d");
+  const wrap = (text, font, maxW) => {
+    x.font = font;
+    const out = [];
+    for (const raw of String(text).split("\n")) {
+      let line = "";
+      for (const w of raw.split(/\s+/).filter(Boolean)) {
+        const t = line ? line + " " + w : w;
+        if (line && x.measureText(t).width > maxW) { out.push(line); line = w; } else line = t;
+      }
+      if (line) out.push(line);
+    }
+    return out;
+  };
+  const sa = (v.sa || "").replace(/।।\s*\d+\.\d+\s*।।/g, "।।").trim();
+  const devLines = sa ? wrap(sa, F.dev, TW) : [];
+  const enLines = wrap(v.en, F.en, TW);
+  const guLines = gu ? wrap(gu, F.gu, TW) : [];
+  const devLH = 74, enLH = Math.round(enSize * 1.38), guLH = 62;
+  const spaced = (text, font, color, y) => {
+    x.font = font; x.fillStyle = color;
+    try { x.letterSpacing = "6px"; } catch {}
+    x.fillText(text, W / 2, y);
+    try { x.letterSpacing = "0px"; } catch {}
+  };
+  const layout = (draw) => {
+    let y = 96 + 26;
+    if (draw) spaced("BHAGAVAD GĪTĀ · " + v.ref, F.eyebrow, "#f2cd8c", y);
+    if (devLines.length) {
+      y += 46;
+      x.font = F.dev; x.fillStyle = "#f6efdf";
+      for (const l of devLines) { y += devLH; if (draw) x.fillText(l, W / 2, y); }
+    }
+    y += 64;
+    if (draw) {
+      const g = x.createLinearGradient(W / 2 - 44, 0, W / 2 + 44, 0);
+      g.addColorStop(0, "rgba(231,180,102,0)"); g.addColorStop(0.5, "#e7b466"); g.addColorStop(1, "rgba(231,180,102,0)");
+      x.fillStyle = g; x.fillRect(W / 2 - 44, y, 88, 2);
+    }
+    y += 24;
+    x.font = F.en; x.fillStyle = "#f6efdf";
+    for (const l of enLines) { y += enLH; if (draw) { x.font = F.en; x.fillStyle = "#f6efdf"; x.fillText(l, W / 2, y); } }
+    if (guLines.length) {
+      y += 34;
+      for (const l of guLines) { y += guLH; if (draw) { x.font = F.gu; x.fillStyle = "#b8c0e2"; x.fillText(l, W / 2, y); } }
+    }
+    return y;
+  };
+  const yEnd = layout(false);
+  const H = Math.max(yEnd + 220, 1080);
+  c.height = H;
+  const lin = x.createLinearGradient(0, 0, 0, H);
+  lin.addColorStop(0, "#0a0e24"); lin.addColorStop(1, "#070a1c");
+  x.fillStyle = lin; x.fillRect(0, 0, W, H);
+  const glow = x.createRadialGradient(W / 2, 0, 0, W / 2, 0, W * 0.85);
+  glow.addColorStop(0, "rgba(231,180,102,.20)");
+  glow.addColorStop(0.55, "rgba(125,144,236,.05)");
+  glow.addColorStop(1, "rgba(0,0,0,0)");
+  x.fillStyle = glow; x.fillRect(0, 0, W, H);
+  x.textAlign = "center";
+  x.save();
+  x.translate(0, Math.max(0, (H - 220 - yEnd) / 2));
+  layout(true);
+  x.restore();
+  spaced("SĀRATHI", F.foot, "#f2cd8c", H - 118);
+  x.font = F.url; x.fillStyle = "#6d76a3";
+  x.fillText("strokedoc.github.io/sarathi", W / 2, H - 76);
+  const blob = await new Promise((res) => c.toBlob(res, "image/png"));
+  if (!blob) throw new Error("card failed");
+  return blob;
+}
+
+const shareVerse = async (v) => {
   const text = `"${v.en}"\n\n— Bhagavad Gītā ${v.ref}\n\nSārathi — ${SARATHI_URL}`;
+  if (navigator.share && navigator.canShare) {
+    try {
+      const blob = await drawVerseCard(v);
+      const file = new File([blob], `gita-${v.ref.replace(".", "-")}.png`, { type: "image/png" });
+      if (navigator.canShare({ files: [file] })) {
+        try { await navigator.share({ files: [file], text }); return null; }
+        catch (e) { if (e && e.name === "AbortError") return null; }
+      }
+    } catch {}
+  }
   return shareOrCopy({ text }, text);
 };
 const shareApp = () => {
@@ -358,8 +481,8 @@ function Explanation({ v }) {
   return (
     <div className="cmp">
       <span className="cmp-lbl">Explanation</span>
-      <div className="cmp-row" style={{ fontSize: 14, lineHeight: 1.6, color: "var(--muted)" }}>{state.en}</div>
-      {state.gu && <div className="guj" style={{ fontSize: 14.5, marginTop: 8 }}>{state.gu}</div>}
+      <div className="cmp-row" style={{ fontSize: "calc(14px*var(--ts))", lineHeight: 1.6, color: "var(--muted)" }}>{state.en}</div>
+      {state.gu && <div className="guj" style={{ fontSize: "calc(14.5px*var(--ts))", marginTop: 8 }}>{state.gu}</div>}
     </div>
   );
 }
@@ -370,7 +493,7 @@ function VerseCard({ v, fav, onFav, onMark, marked }) {
     <div className="mini fade" id={onMark ? "v-" + v.ref : undefined}>
       <div className="mini-head"><span className="ref">Gītā {v.ref}</span>
         <span onClick={() => onFav(v.ref)} role="button" aria-label="Save verse"><Star on={fav} /></span></div>
-      {v.sa && <div className="dev" style={{ fontSize: 16, lineHeight: 1.95 }}>{v.sa}</div>}
+      {v.sa && <div className="dev" style={{ fontSize: "calc(16px*var(--ts))", lineHeight: 1.95 }}>{v.sa}</div>}
       {v.tr && <div className="translit">{v.tr}</div>}
       <div className="en2">{v.en}</div>
       <GujaratiLine v={v} />
@@ -399,22 +522,29 @@ export default function App() {
   const [favorites, setFavorites] = useState([]);
   const [journal, setJournal] = useState({});
   const todayKey = (d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`)(new Date());
-  const dayOfYear = useMemo(() => {
-    const n = new Date(), start = new Date(n.getFullYear(), 0, 0);
-    return Math.floor((n - start) / 86400000);
+  const dayNum = useMemo(() => {
+    const n = new Date();
+    return Math.round(Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()) / 86400000);
   }, []);
   const [pool, setPool] = useState("all");
   const [shuffleRef, setShuffleRef] = useState(null);
   const activeList = pool === "curated" ? FEATURED_LIST : GITA;
   const choosePool = (p) => { setPool(p); setShuffleRef(null); };
-  const dayVerse = shuffleRef ? BYREF[shuffleRef] : activeList[dayOfYear % activeList.length];
+  const dayOrder = pool === "curated" ? DAY_ORDER_CURATED : DAY_ORDER_ALL;
+  const dayVerse = shuffleRef ? BYREF[shuffleRef] : activeList[dayOrder[dayNum % activeList.length]];
   const [bookmark, setBookmark] = useState(null);
   const [jumpRef, setJumpRef] = useState(null);
+  const [textSize, setTextSize] = useState("normal");
+  const chooseTextSize = (t) => {
+    setTextSize(t);
+    try { localStorage.setItem("sarathi:textsize", t); } catch {}
+  };
 
   useEffect(() => { (async () => {
     try { const f = localStorage.getItem("sarathi:favorites"); if (f) setFavorites(JSON.parse(f)); } catch (e) {}
     try { const j = localStorage.getItem("sarathi:journal"); if (j) setJournal(JSON.parse(j)); } catch (e) {}
     try { const b = localStorage.getItem("sarathi:bookmark"); if (b) setBookmark(JSON.parse(b)); } catch {}
+    try { if (localStorage.getItem("sarathi:textsize") === "large") setTextSize("large"); } catch {}
     setReady(true);
   })(); }, []);
 
@@ -475,7 +605,7 @@ export default function App() {
   };
 
   return (
-    <div className="app"><style>{CSS}</style>
+    <div className={"app" + (textSize === "large" ? " ts-lg" : "")}><style>{CSS}</style>
       <div className="topscrim bg-fixed" />
       <header className="head"><div className="head-in">
         <ShareAppButton />
@@ -489,7 +619,7 @@ export default function App() {
         bookmark={bookmark} goToBookmark={goToBookmark} />}
       {tab === "guidance" && <Guidance favorites={favorites} onFav={toggleFav} />}
       {tab === "explore" && <Explore favorites={favorites} onFav={toggleFav} onMark={setMark} bookmarkRef={bookmark?.ref} bookmarkCh={bookmark?.ch} onContinue={goToBookmark} jumpRef={jumpRef} onJumped={() => setJumpRef(null)} />}
-      {tab === "saved" && <Saved favorites={favorites} journal={journal} onFav={toggleFav} onExport={exportBackup} onImport={importBackup} />}
+      {tab === "saved" && <Saved favorites={favorites} journal={journal} onFav={toggleFav} onExport={exportBackup} onImport={importBackup} textSize={textSize} onTextSize={chooseTextSize} />}
     </div>
 
       <div className="botscrim bg-fixed" />
@@ -620,9 +750,10 @@ function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue
   const [q, setQ] = useState("");
   const themeList = theme ? FEATURED_LIST.filter((v) => FEAT[v.ref].themes.includes(theme)) : FEATURED_LIST;
   const allThemeList = theme ? GITA.filter((v) => (VTHEM[v.ref] || []).includes(TH_NAMES.indexOf(theme))) : GITA;
+  const searchIndex = useMemo(() => GITA.map((v) => fold(v.en + "\n" + v.tr)), []);
   const qRaw = q.trim();
-  const s = qRaw.toLowerCase();
-  const searchList = s ? GITA.filter((v) => v.en.toLowerCase().includes(s) || v.ref === s || v.tr.toLowerCase().includes(s) || (v.gu && v.gu.includes(qRaw))) : null;
+  const fq = fold(qRaw);
+  const searchList = fq ? GITA.filter((v, i) => searchIndex[i].includes(fq) || v.ref === fq || (v.gu && v.gu.includes(qRaw))) : null;
   const chapList = GITA.filter((v) => v.ch === chapter);
   useEffect(() => {
     if (!jumpRef) return;
@@ -683,7 +814,7 @@ function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue
 
       {mode === "all" && (<>
         <input className="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search all verses — English, ગુજરાતી, or a reference like 9.22" />
-        {s ? (
+        {fq ? (
           <>
             <div className="count">{searchList.length} match{searchList.length === 1 ? "" : "es"}</div>
             {searchList.length === 0 ? <div className="empty"><div className="big">Nothing found</div>Try another word, or a reference like 2.47.</div>
@@ -706,7 +837,7 @@ function Explore({ favorites, onFav, onMark, bookmarkRef, bookmarkCh, onContinue
   );
 }
 
-function Saved({ favorites, journal, onFav, onExport, onImport }) {
+function Saved({ favorites, journal, onFav, onExport, onImport, textSize, onTextSize }) {
   const favVerses = favorites.map((r) => BYREF[r]).filter(Boolean);
   const entries = Object.entries(journal).sort((a, b) => b[0].localeCompare(a[0]));
   const fileRef = useRef(null);
@@ -736,7 +867,7 @@ function Saved({ favorites, journal, onFav, onExport, onImport }) {
             <div className="mini-head">
               <span className="ref">{new Date(date + "T00:00").toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}</span>
               {v && <span className="saved-pill">Gītā {v.ref}</span>}</div>
-            <div style={{ marginTop: 10, fontSize: 15, lineHeight: 1.6, whiteSpace: "pre-wrap" }}>{e.text}</div>
+            <div style={{ marginTop: 10, fontSize: "calc(15px*var(--ts))", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>{e.text}</div>
           </div>); })}
       <div className="count" style={{ marginTop: 22 }}>Backup</div>
       <div className="disc">Your reflections live only in this browser. A backup file protects them if you clear your data or switch devices.</div>
@@ -746,6 +877,12 @@ function Saved({ favorites, journal, onFav, onExport, onImport }) {
         <input ref={fileRef} type="file" accept="application/json" style={{ display: "none" }} onChange={handleFile} />
       </div>
       {status && <div className="disc" style={{ marginTop: 8 }}>{status}</div>}
+      <div className="count" style={{ marginTop: 22 }}>Text size</div>
+      <div className="disc">Applies to verse and reading text everywhere in the app.</div>
+      <div className="seg" style={{ marginTop: 10 }}>
+        <button className={textSize === "normal" ? "on" : ""} onClick={() => onTextSize("normal")}>Normal</button>
+        <button className={textSize === "large" ? "on" : ""} onClick={() => onTextSize("large")}>Large</button>
+      </div>
     </div>
   );
 }
