@@ -173,7 +173,10 @@ textarea:focus{border-color:var(--krishna2)}.saved-pill{font-size:11.5px;color:v
 .tab{width:74px;background:none;border:none;color:var(--muted2);font-family:var(--ui);font-size:10.5px;border-radius:17px;padding:8px 0 7px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:.16s}
 .tab.on{background:rgba(231,180,102,.16);color:var(--gold2)}
 .stack>*+*{margin-top:14px}
-.tday{text-align:center;padding-top:4px}
+/* Today is a composed screen with a hand-tuned type scale — the reading-size
+   control deliberately stops here (--ts pinned to 1) and applies to the
+   scrolling lists in Explore/Guidance/Saved instead. */
+.tday{--ts:1;text-align:center;padding-top:4px}
 .t-eyebrow{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .t-refrow{display:inline-flex;align-items:center;gap:8px;margin-top:10px}
 .t-ref{font-family:var(--display);font-style:italic;font-size:19px;color:var(--gold2)}
@@ -634,7 +637,7 @@ export default function App() {
     <div className={"app" + (textSize === "large" ? " ts-lg" : "")}><style>{CSS}</style>
       <div className="topscrim bg-fixed" />
       <header className="head"><div className="head-in">
-        <TextSizeButton textSize={textSize} onChange={chooseTextSize} />
+        {tab !== "today" && <TextSizeButton textSize={textSize} onChange={chooseTextSize} />}
         <ShareAppButton />
         <div className="mark"><Wheel s={18} /><span>SĀRATHI</span></div>
       </div></header>
